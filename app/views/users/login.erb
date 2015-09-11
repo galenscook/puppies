@@ -1,0 +1,13 @@
+<% if @error_message %>
+  Your login information was incorrect.  Puppies don't like hackers.
+<% end %>
+
+Log In
+
+<form method='post' action='/users/login'>
+  <label for='username'>Username:</label>
+  <input name='username' type='text'><br>
+  <label for='password'>Password:</label>
+  <input name='password' type='password'><br>
+  <input type='submit' value='Log In'>
+</form>

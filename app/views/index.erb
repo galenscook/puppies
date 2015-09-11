@@ -3,4 +3,9 @@
 
 </div>
 
-<a href='/users/new'>Sign Up</a>
+<% if is_authenticated? %>
+  <a href='/users/logout'>Log Out</a>
+<% else %>
+  <a href='/users/new'>Sign Up</a>
+  <a href='/users/login'>Log In</a>
+<% end %>

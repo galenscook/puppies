@@ -1,4 +1,6 @@
-
+get '/session' do
+  session.inspect
+end
 #send to registration form
 get '/users/new' do
   erb :'/users/new'
@@ -16,6 +18,29 @@ post '/users' do
   end
 end
 
+#sends user to login page   <<--- NECESSARY??
+get '/users/login' do
+  erb :'/users/login'
+end
+
+#sends login request to database
+post '/users/login' do
+  user = User.find_by(username: params[:username])
+  if user.authenticate(params[:password])
+    session[:user_id] = user.id
+    redirect "/users/#{user.id}"
+  else
+    @error_message = true
+    erb :'/users/login'
+  end
+end
+
+#logs user out 
+get '/users/logout' do
+  session.delete(:user_id)
+  redirect '/'
+end
+
 #View user profile
 get '/users/:id' do
   @user = User.find(params[:id])
@@ -24,8 +49,12 @@ end
 
 #Edit user profile
 get '/users/:id/edit' do
-  @user = User.find(params[:id])
-  erb :'/users/edit'
+  if session[:user_id] != params[:id]
+    erb :access_denied
+  else
+    @user = User.find(params[:id])
+    erb :'/users/edit'
+  end
 end
 
 #commit edits to database
@@ -43,18 +72,12 @@ end
 
 #delete user profile
 delete '/users/:id' do
-
+  if session[:user_id] != params[:id]
+    erb :access_denied
+  else
+    user = User.find(params[:id])
+    user.destroy
+    redirect '/'
+  end
 end
  
-#sends user to login page   <<--- NECESSARY??
-get '/users/login' do
-end
-
-#sends login request to database
-post '/users/login' do
-end
-
-#logs user out 
-get 'users/logout' do
-
-end
