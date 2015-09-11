@@ -1,0 +1,17 @@
+<% if @error_message %>
+  Your old password was incorrect.  Puppies don't like hackers.
+<% end %>
+
+<form method='post' action="/users/<%=@user.id%>">
+  <input type='hidden' name='_method' value='put'>
+  <label for='user[username]'>New username:</label>
+  <input name='user[username]' type='text' value ='<%=@user.username%>'><br>
+  <label for='password_old'>Confirm old password:</label>
+  <input name='password_old' type='password'><br>
+
+  <label for='user[password]'>New password:</label>
+  <input name='user[password]' type='password'><br>
+  <label for='user[password_confirmation]'>Confirm your new password:</label>
+  <input name='user[password_confirmation]' type='password'><br>
+  <input type='submit' value='Make Changes'>
+</form>

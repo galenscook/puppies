@@ -1,0 +1,13 @@
+<% if @errors %>
+  <%= @errors[0] %>
+<% end %>
+
+<form method='post' action='/users'>
+  <label for='user[username]'>Choose a username:</label>
+  <input name='user[username]' type='text'><br>
+  <label for='user[password]'>Choose a password:</label>
+  <input name='user[password]' type='password'><br>
+  <label for='user[password_confirmation]'>Confirm your password:</label>
+  <input name='user[password_confirmation]' type='password'><br>
+  <input type='submit' value='Sign Up!'>
+</form>

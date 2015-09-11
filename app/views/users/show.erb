@@ -1,0 +1,12 @@
+Hello, <%= @user.username %>!
+
+<a href='/'>Home</a>
+
+
+<% if session[:user_id] == @user.id %>
+  <a href="/users/<%=@user.id%>/edit">Edit Profile</a>
+  <form method='post' action="/users/<%=@user.id%>">
+    <input type='hidden' name='_method' value='delete'>
+    <input type='submit' value='Delete Profile'>
+  </form>
+<% end %>
