@@ -7,3 +7,15 @@
 th {
   text-align: left;
 }
+
+
+#navbar li{
+  float: right;
+  list-style-type: none;
+}
+
+#navbar a {
+  display: block;
+  width: 100px;
+  text-align: center;
+}

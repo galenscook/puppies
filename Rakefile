@@ -7,7 +7,50 @@ require ::File.expand_path('../config/environment', __FILE__)
 # Include all of ActiveSupport's core class extensions, e.g., String#camelize
 require 'active_support/core_ext'
 
+
+
+
 namespace :generate do
+
+  desc "Generate RESTful routes in app/controllers, e.g., rake generate:routes FILE=users.rb RESOURCE=users"
+  task :routes do
+    unless ENV.has_key?('RESOURCE') 
+      fail 'rake generate:routes RESOURCE=users'
+    end
+
+    controller_filename = ENV['RESOURCE'] + '.rb'
+
+    controllers_path = APP_ROOT.join('app', 'controllers', controller_filename)
+
+    routes = ->(resource) do
+    <<-RESTFUL_ROUTES
+get '/#{resource}' do              # display a list of all things
+end
+
+get '/#{resource}/new' do          # return an html form for creating a new thing
+end
+
+post '/#{resource}' do             # create a new thing
+end
+
+get '/#{resource}/:id' do          # display a specific thing
+end
+
+get '/#{resource}/:id/edit' do     # return an html form for editing a thing
+end
+
+put '/#{resource}/:id' do          # update a specific thing
+end
+
+delete  '/#{resource}/:id' do      # delete a specific thing
+end
+
+    RESTFUL_ROUTES
+    end.call(ENV['RESOURCE'])
+   
+    File.write(controllers_path, routes)
+  end
+
   desc "Create an empty model in app/models, e.g., rake generate:model NAME=User"
   task :model do
     unless ENV.has_key?('NAME')

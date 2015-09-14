@@ -10,3 +10,8 @@ Hello, <%= @user.username %>!
     <input type='submit' value='Delete Profile'>
   </form>
 <% end %>
+
+<h4>Your current puppy hearts:</h4>
+<% @user.hearts.each do |heart| %>
+  <a href = '/photos/<%=heart.photo_id%>'><img src='<%= heart.photo.url%>'></a>
+<% end %>

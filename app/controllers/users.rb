@@ -1,3 +1,4 @@
+
 get '/session' do
   session.inspect
 end
@@ -49,7 +50,7 @@ end
 
 #Edit user profile
 get '/users/:id/edit' do
-  if session[:user_id] != params[:id]
+  if current_user.id != params[:id]
     erb :access_denied
   else
     @user = User.find(params[:id])
@@ -72,7 +73,7 @@ end
 
 #delete user profile
 delete '/users/:id' do
-  if session[:user_id] != params[:id]
+  if current_user.id != params[:id]
     erb :access_denied
   else
     user = User.find(params[:id])

@@ -1,0 +1,9 @@
+<% if @errors %>
+  <%= @errors[0] %>
+<% end %>
+
+<form method='post' action='/photos'>
+  <label for='url'>Photo URL</label>
+  <input name='url' type='text'>
+  <input type='submit' value='Add photo'>
+</form>
