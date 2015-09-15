@@ -1,0 +1,6 @@
+<form method='post' action='/hearts' id='heart'>
+  <input type='hidden' name='heart[user_id]' value='<%=current_user.id%>'>
+  <input type='hidden' name='heart[photo_id]' value='<%=@photo.id%>'>
+  <input type='text' name='heart[comment]' placeholder='What makes this so heartable?'>
+  <input type='submit' value='Heart it!'>
+</form>

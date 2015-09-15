@@ -1,0 +1,6 @@
+<form method='post' action='/hearts' id='unheart'>
+  <input type='hidden' name='_method' value='delete'>
+  <input type='hidden' name='user_id' value='<%=current_user.id%>'>
+  <input type='hidden' name='photo_id' value='<%=@photo.id%>'>
+  <input type='submit' value='Unheart'>
+</form>
