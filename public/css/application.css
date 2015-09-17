@@ -29,6 +29,7 @@ th {
   display: block;
   width: 100px;
   text-align: center;
+  z-index: 9000;
 }
 
 .hidden {
