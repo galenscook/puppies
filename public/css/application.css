@@ -31,13 +31,58 @@ th {
   text-align: center;
 }
 
+.hidden {
+  display: none;
+}
 
+/* PHOTO GRID */
 
 .photo-grid img {
   max-width: 300px;
   max-height: 300px;
 }
 
-.hidden {
-  display: none;
+.grid-sizer,
+.grid-item {
+  width: 20%;
 }
+
+.grid-item {
+  float: left;
+}
+
+
+/* HEARTS */
+input.heartbutton {
+  background-image: url('http://clipartist.net/Holidays/Valentines_Day/Valentines_Day/heart_icon_red_hollow_valentine-999px.png');
+  vertical-align: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+}
+
+input.unheartbutton {
+  background-image: url('http://www.clipartbest.com/cliparts/KTj/e6M/KTje6M47c.png');
+  vertical-align: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,13 @@
 
-
+<div class='photo-grid'>
+  <div class='grid-sizer'></div>
 <% @photos.each do |photo| %>
-  <div class='one-third column photo-grid'><a href = '/photos/<%=photo.id%>'><img src='<%= photo.url%>' class ='.u-max-full-width' /></a></div>
+  <div class='grid-item'><a href = '/photos/<%=photo.id%>'><img src='<%= photo.url%>'  /></a></div>
 <% end %>
+</div>
 
+<script type="text/javascript">
+  imagesLoaded( $('.photo-grid'), function( event ) {
+  photoGrid();
+});
+</script>

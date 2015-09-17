@@ -1,43 +1,35 @@
 <img src='<%= @photo.url%>'>
 
 <p class="heart_count">Heart Count = <%= @photo.heart_count %>
-<ul class="comments">
-<% @photo.hearts.each do |heart| %>
-  <%if heart.comment != "" %>
-    <li><%=heart.comment%></li>
-  <%end %>
-<% end %>
-</ul>
+<div class="comments">
+  <% @photo.hearts.each do |heart| %>
+    <%if heart.comment != "" %>
+      <article id="<%= heart.id%>">
+        <%=heart.comment%>
+      </article>
+    <%end %>
+  <% end %>
+</div>
 
+<div class="hidden_forms">
 
-  <%if @photo.hearts.find_by(user_id: current_user.id)%>
-    <form method='post' action='/hearts' id='unheart'>
-      <input type='hidden' name='_method' value='delete'>
-      <input type='hidden' name='user_id' value='<%=current_user.id%>'>
-      <input type='hidden' name='photo_id' value='<%=@photo.id%>'>
-      <input type='submit' value='Unheart'>
-    </form>
-  <%else%>
-    <form method='post' action='/hearts' id='heart'>
-      <input type='hidden' name='heart[user_id]' value='<%=current_user.id%>'>
-      <input type='hidden' name='heart[photo_id]' value='<%=@photo.id%>'>
-      <input type='text' name='heart[comment]' placeholder='What makes this so heartable?'>
-      <input type='submit' value='Heart it!'>
-    </form>
-  <%end%>
 
 
 <!-- Hidden forms to pop up after AJAX requests -->
-  <form method='post' action='/hearts' id='unheart' class="hidden">
+
+  <form method='post' action='/hearts' id='unheart' <%if !(@photo.hearts.find_by(user_id: current_user.id))%>class="hidden"<%end%>>
     <input type='hidden' name='_method' value='delete'>
     <input type='hidden' name='user_id' value='<%=current_user.id%>'>
     <input type='hidden' name='photo_id' value='<%=@photo.id%>'>
-    <input type='submit' value='Unheart'>
+    <button type='submit' ><span class="fa fa-heart-o fa-3x" style='color: red;'></span></button>
+
   </form>
 
-  <form method='post' action='/hearts' id='heart' class="hidden">
+  <form method='post' action='/hearts' id='heart' <%if (@photo.hearts.find_by(user_id: current_user.id))%>class="hidden"<%end%>>
     <input type='hidden' name='heart[user_id]' value='<%=current_user.id%>'>
     <input type='hidden' name='heart[photo_id]' value='<%=@photo.id%>'>
     <input type='text' name='heart[comment]' placeholder='What makes this so heartable?'>
-    <input type='submit' value='Heart it!'>
+    <button type='submit' ><span class="fa fa-heart fa-3x" style='color: red;'></span></button>
+    <!-- <input type='submit' value ='' class="heartbutton"><img src='http://clipartist.net/Holidays/Valentines_Day/Valentines_Day/heart_icon_red_hollow_valentine-999px.png'> --><!-- </button> -->
   </form>
+</div>

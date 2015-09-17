@@ -6,15 +6,17 @@ $(document).ready(function() {
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
   heart();
   unheart();
+  // photoGrid();
 });
 
 
 function heart() {
-  $('#heart').submit(function(event){
+  $('.hidden_forms').on("submit", "#heart", function(event){
     event.preventDefault();
-
+    console.log("HEART")
     var heartInfo = $(this).serialize()
 
+    $('input[type=text]').val('')
     $.ajax({
       method:"post",
       url: "/hearts",
@@ -25,9 +27,9 @@ function heart() {
     .done(function(response) {
       response = JSON.parse(response);
       $('.heart_count').text("Heart Count = "+response["heart_count"]);
-      $('.comments').append('<li>'+response.comment+'</li>');
-      $('#heart').hide();
-      $('#unheart.hidden').show();
+      $('.comments').append('<article id="'+response.heart_id+'">'+response.comment+'</article>');
+      $('#unheart').removeClass('hidden');
+      $('#heart').addClass('hidden');
     })
 
     .fail(function(response){
@@ -38,9 +40,9 @@ function heart() {
 };
 
 function unheart() {
-  $('#unheart').submit(function(event){
+  $('.hidden_forms').on("submit", "#unheart", function(event){
     event.preventDefault();
-
+    console.log("UNHEART")
     var heartInfo = $(this).serialize()
 
     $.ajax({
@@ -51,19 +53,29 @@ function unheart() {
 
     .done(function(response){
       response = JSON.parse(response);
-      console.log(response.comment);
+      console.log('article#'+response.heart_id);
       $('.heart_count').text("Heart Count = "+response["heart_count"]);
-      $('<li>'+response.comment+'</li>').remove();
-      $('#unheart').hide();
-      $('#heart.hidden').show();
+      $('article#'+response.heart_id).remove();
+      $('#heart').removeClass('hidden');
+      $('#unheart').addClass('hidden');
     })
 
     .fail(function(response){
       console.log("FAIL")
       console.log(response)
     })
-
   });
+}
 
+
+
+function photoGrid () {
+  var elem = document.querySelector('.photo-grid');
+  var msnry = new Masonry( elem, {
+    itemSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    percentPosition: true,
+    gutter: 40,
+  });
 
 }

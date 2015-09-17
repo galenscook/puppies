@@ -62,7 +62,7 @@ end
 put '/users/:id' do
   @user = User.find(params[:id])
   old_password = params[:password_old]
-  if old_password == @user.password
+  if @user.password == old_password
     @user.update_attributes(params[:user])
     redirect "/users/#{@user.id}"
   else
@@ -78,6 +78,7 @@ delete '/users/:id' do
   else
     user = User.find(params[:id])
     user.destroy
+    session.delete(:user_id)
     redirect '/'
   end
 end
