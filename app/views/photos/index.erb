@@ -1,45 +1,12 @@
-<!-- 
-<div class='photo-grid'>
-  <div class='grid-sizer'></div>
-  <div class='grid-item'></div>
-<%  %>
-</div> -->
 
 
 <div id="columns" data-columns=''>
   <% @photos.each do |photo| %>
     <div class='panel panel-primary'>
-      <div class='panel-heading'>HEADING</div>
-      <div class='panel-body'><a href = '/photos/<%=photo.id%>'><img src='<%= photo.url%>' /></a></div>
+      <div class='panel-body'><a href = '/photos/<%=photo.id%>'><img src='<%= photo.url%>' class='img-responsive' /></a></div>
+      <div class='panel-heading'>
+
+      </div>
     </div>
   <%end%>
-  
 </div>
-
-<!-- <div id='grid' data-columns>
-
-    <div class='panel panel-primary'>
-      <div class='panel-heading'>HEADING</div>
-      <div class='panel-body'><img src='https://upload.wikimedia.org/wikipedia/commons/c/c7/Puppy_on_Halong_Bay.jpg'></div>
-    </div>
-
-    <div class='panel panel-primary'>
-      <div class='panel-heading'>HEADING</div>
-      <div class='panel-body'>HELLOOOOO</div>
-    </div>
-    <div class='panel panel-primary'>
-      <div class='panel-heading'>HEADING</div>
-      <div class='panel-body'>HELLOOOOO</div>
-    </div>
-    <div class='panel panel-primary'>
-      <div class='panel-heading'>HEADING</div>
-      <div class='panel-body'>HELLOOOOO</div>
-    </div>
-</div>
- -->
-
-<!-- <script type="text/javascript">
-  imagesLoaded( $('.photo-grid'), function( event ) {
-  photoGrid();
-});
-</script> -->

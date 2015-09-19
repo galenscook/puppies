@@ -27,7 +27,7 @@ end
 #sends login request to database
 post '/users/login' do
   user = User.find_by(username: params[:username])
-  if user.authenticate(params[:password])
+  if user && user.authenticate(params[:password])
     session[:user_id] = user.id
     redirect "/users/#{user.id}"
   else
@@ -50,7 +50,8 @@ end
 
 #Edit user profile
 get '/users/:id/edit' do
-  if current_user.id != params[:id]
+  if current_user.id.to_s != params[:id]
+    @params = params[:id]
     erb :access_denied
   else
     @user = User.find(params[:id])
@@ -62,7 +63,7 @@ end
 put '/users/:id' do
   @user = User.find(params[:id])
   old_password = params[:password_old]
-  if @user.password == old_password
+  if (@user.password == old_password)
     @user.update_attributes(params[:user])
     redirect "/users/#{@user.id}"
   else
@@ -73,7 +74,7 @@ end
 
 #delete user profile
 delete '/users/:id' do
-  if current_user.id != params[:id]
+  if current_user.id.to_s != params[:id]
     erb :access_denied
   else
     user = User.find(params[:id])

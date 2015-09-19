@@ -13,6 +13,10 @@ html {
   width: 50%;
 }
 
+.right {
+  float: right;
+}
+
 
 /* PHOTO GRID */
 @media screen and (min-width: 1px) and (max-width: 480px){
@@ -36,59 +40,11 @@ html {
   }
 }
 
-.panel-body {
+.panel-primary {
   object-fit: scale-down;
 }
 
-img {
-  max-width: 300px;
-  max-height: 300px;
-}
-/*.container {
-  margin: 20px auto;
-  width: 600px;
-  padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
-}
-th {
-  text-align: left;
-}
 
-
-#navbar li{
-  float: right;
-  list-style-type: none;
-}
-
-#navbar a {
-  display: block;
-  width: 100px;
-  text-align: center;
-}
-
-.hidden {
-  display: none;
-}
-
-/* PHOTO GRID */
-
-/*.photo-grid img {
-  max-width: 300px;
-  max-height: 300px;
-}
-
-.grid-sizer,
-.grid-item {
-  width: 23%;
-}
-
-.grid-item {
-  float: left;
-  margin-bottom: 10px; 
-}
-
-.grid-item
-*/
 
 /* HEARTS */
 input.heartbutton {
