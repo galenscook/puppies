@@ -1,17 +1,19 @@
-Hello, <%= @user.username %>!
+<h1>Hello, <%= @user.username %>!</h1>
 
-<a href='/'>Home</a>
+
 
 
 <% if session[:user_id] == @user.id %>
   <a href="/users/<%=@user.id%>/edit">Edit Profile</a>
-  <form method='post' action="/users/<%=@user.id%>">
-    <input type='hidden' name='_method' value='delete'>
-    <input type='submit' value='Delete Profile'>
-  </form>
 <% end %>
 
 <h4>Your current puppy hearts:</h4>
-<% @user.hearts.each do |heart| %>
-  <a href = '/photos/<%=heart.photo_id%>'><img src='<%= heart.photo.url%>'></a>
-<% end %>
+
+<div id="columns" data-columns=''>
+  <% @user.hearts.each do |heart| %>
+    <div class='panel panel-primary'>
+      <div class='panel-heading'>HEADING</div>
+      <div class='panel-body'><a href = '/photos/<%=heart.photo_id%>'><img src='<%= heart.photo.url%>' class='img-responsive'></a></div>
+    </div>
+  <%end%>
+</div>

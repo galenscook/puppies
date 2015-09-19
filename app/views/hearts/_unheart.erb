@@ -1,6 +1,7 @@
-<form method='post' action='/hearts' id='unheart'>
+<form method='post' action='/hearts' id='unheart' <%if !(@photo.hearts.find_by(user_id: current_user.id))%>class="hidden"<%end%>>
   <input type='hidden' name='_method' value='delete'>
   <input type='hidden' name='user_id' value='<%=current_user.id%>'>
   <input type='hidden' name='photo_id' value='<%=@photo.id%>'>
-  <input type='submit' value='Unheart'>
+  <button type='submit' ><span class="fa fa-heart-o fa-3x" style='color: red;'></span></button>
+
 </form>

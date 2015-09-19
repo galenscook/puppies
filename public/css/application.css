@@ -9,48 +9,41 @@ html {
   box-sizing: inherit;
   }
 
-.container {
-  margin: 20px auto;
-  width: 600px;
-  padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
-}
-th {
-  text-align: left;
+.half {
+  width: 50%;
 }
 
-
-#navbar li{
+.right {
   float: right;
-  list-style-type: none;
 }
 
-#navbar a {
-  display: block;
-  width: 100px;
-  text-align: center;
-  z-index: 9000;
-}
-
-.hidden {
-  display: none;
-}
 
 /* PHOTO GRID */
-
-.photo-grid img {
-  max-width: 300px;
-  max-height: 300px;
+@media screen and (min-width: 1px) and (max-width: 480px){
+  #columns[data-columns]::before {
+    content: '1 .col-xs-12';
+  }
+}
+@media screen and (min-width: 1px) and (max-width: 767px){
+  #columns[data-columns]::before {
+      content: '2 .col-xs-6';
+  }
+}
+@media screen and (min-width:768px) and (max-width: 991px){
+  #columns[data-columns]::before {
+      content: '3 .col-sm-4';
+  }
+}
+@media screen and (min-width:992px) and (max-width: 9999px){
+  #columns[data-columns]::before {
+      content: '4 .col-md-3';
+  }
 }
 
-.grid-sizer,
-.grid-item {
-  width: 20%;
+.panel-primary {
+  object-fit: scale-down;
 }
 
-.grid-item {
-  float: left;
-}
 
 
 /* HEARTS */
