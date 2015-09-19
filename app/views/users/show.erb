@@ -11,9 +11,12 @@
 
 <div id="columns" data-columns=''>
   <% @user.hearts.each do |heart| %>
-    <div class='panel panel-primary'>
-      <div class='panel-heading'>HEADING</div>
-      <div class='panel-body'><a href = '/photos/<%=heart.photo_id%>'><img src='<%= heart.photo.url%>' class='img-responsive'></a></div>
+    <div class='panel panel-primary photo' id='photo<%=heart.photo_id%>'>
+      <div class='panel-body'><a href = '/photos/<%=heart.photo_id%>'><img src='<%= heart.photo.url%>' class='img-responsive' /></a></div>
+      <div class='panel-heading'>
+      <%= erb :'/hearts/_grid_hearts', locals: {photo: heart.photo} %>
+      </div>
     </div>
   <%end%>
 </div>
+

@@ -5,10 +5,11 @@ $(document).ready(function() {
 
 
 function heart() {
-  $('.hidden_forms').on("submit", "#heart", function(event){
+  $('.heart-buttons').on("submit", "#heart", function(event){
     event.preventDefault();
     console.log("HEART")
     var heartInfo = $(this).serialize()
+    var photoID = $(this).closest('.photo').attr('id')
 
     $('input[type=text]').val('')
     $.ajax({
@@ -23,8 +24,8 @@ function heart() {
       $('.heart_count').text("Heart Count = "+response["heart_count"]);
       $('.comments').append('<article id="'+response.heart_id+'">'+response.comment+'</article>');
       
-      $('#unheart').removeClass('hidden');
-      $('#heart').addClass('hidden');
+      $('#'+photoID+' #unheart').removeClass('hidden');
+      $('#'+photoID+' #heart').addClass('hidden');
     })
 
     .fail(function(response){
@@ -35,10 +36,13 @@ function heart() {
 };
 
 function unheart() {
-  $('.hidden_forms').on("submit", "#unheart", function(event){
+  $('.heart-buttons').on("submit", "#unheart", function(event){
     event.preventDefault();
     console.log("UNHEART")
+
     var heartInfo = $(this).serialize()
+    var photoID = $(this).closest('.photo').attr('id')
+
 
     $.ajax({
       method: "post",
@@ -49,10 +53,12 @@ function unheart() {
     .done(function(response){
       response = JSON.parse(response);
       console.log('article#'+response.heart_id);
-      $('.heart_count').text("Heart Count = "+response["heart_count"]);
-      $('article#'+response.heart_id).remove();
-      $('#heart').removeClass('hidden');
-      $('#unheart').addClass('hidden');
+      if ($('.comments').length != 0) {
+        $('.heart_count').text("Heart Count = "+response["heart_count"]);
+        $('article#'+response.heart_id).remove();
+      }
+      $('#'+photoID+' #heart').removeClass('hidden');
+      $('#'+photoID+' #unheart').addClass('hidden');
     })
 
     .fail(function(response){

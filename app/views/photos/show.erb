@@ -1,6 +1,8 @@
+
+<div class='photo' id="photo<%=@photo.id%>">
 <img src='<%= @photo.url%>'>
 
-<p class="heart_count">Heart Count = <%= @photo.heart_count %>
+<p class="heart_count">Heart Count = <%= @photo.heart_count %></p>
 <div class="comments">
   <% @photo.hearts.each do |heart| %>
     <%if heart.comment != "" %>
@@ -11,24 +13,7 @@
   <% end %>
 </div>
 
-<div class="hidden_forms">
-
-
+<%= erb :'/hearts/_heart_buttons', locals: {photo: @photo}%>
+</div>
 
 <!-- Hidden forms to pop up after AJAX requests -->
-
-  <form method='post' action='/hearts' id='unheart' <%if !(@photo.hearts.find_by(user_id: current_user.id))%>class="hidden"<%end%>>
-    <input type='hidden' name='_method' value='delete'>
-    <input type='hidden' name='user_id' value='<%=current_user.id%>'>
-    <input type='hidden' name='photo_id' value='<%=@photo.id%>'>
-    <button type='submit' ><span class="fa fa-heart-o fa-3x" style='color: red;'></span></button>
-
-  </form>
-
-  <form method='post' action='/hearts' id='heart' <%if (@photo.hearts.find_by(user_id: current_user.id))%>class="hidden"<%end%>>
-    <input type='hidden' name='heart[user_id]' value='<%=current_user.id%>'>
-    <input type='hidden' name='heart[photo_id]' value='<%=@photo.id%>'>
-    <input type='text' name='heart[comment]' placeholder='What makes this so heartable?'>
-    <button type='submit' ><span class="fa fa-heart fa-3x" style='color: red;'></span></button>
-  </form>
-</div>
