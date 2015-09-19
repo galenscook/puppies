@@ -1,19 +1,28 @@
 
-<div class='photo' id="photo<%=@photo.id%>">
-<img src='<%= @photo.url%>'>
+<!-- <div class='photo single' id="photo<%=@photo.id%>"> -->
 
-<p class="heart_count">Heart Count = <%= @photo.heart_count %></p>
-<div class="comments">
-  <% @photo.hearts.each do |heart| %>
-    <%if heart.comment != "" %>
-      <article id="<%= heart.id%>">
-        <%=heart.comment%>
-      </article>
-    <%end %>
-  <% end %>
+
+<div class='text-center'>
+<div class='panel panel-primary photo single' id='photo<%=@photo.id%>'>
+  <div class='panel-body'><img src='<%= @photo.url%>' class='img-responsive' /></div>
+  <div class='panel-footer'>
+  <%= erb :'/hearts/_heart_buttons', locals: {photo: @photo} %>
+  </div>
+  <ul class='list-group comments'>
+    <% @hearts.each do |heart| %>
+      <%if heart.comment != "" %>
+        <li class='list-group-item' id="<%= heart.id%>">
+          <i class='fa fa-quote-left'></i> <%=heart.comment%> <i class='fa fa-quote-right'></i>
+          --<a href='/users/<%=heart.user_id%>'><%=heart.user.username%></a>
+        </li>
+      <%end %>
+    <% end %>
+  </ul>
 </div>
 
-<%= erb :'/hearts/_heart_buttons', locals: {photo: @photo}%>
+<p class="heart_count">Heart Count = <%= @photo.heart_count %></p>
+
+
 </div>
 
 <!-- Hidden forms to pop up after AJAX requests -->

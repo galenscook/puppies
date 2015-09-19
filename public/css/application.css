@@ -18,6 +18,7 @@ html {
 }
 
 
+
 /* PHOTO GRID */
 @media screen and (min-width: 1px) and (max-width: 480px){
   #columns[data-columns]::before {
@@ -65,14 +66,12 @@ input.unheartbutton {
 
 
 
+/* SINGLE PHOTO */
 
 
-
-
-
-
-
-
+.panel-primary.single {
+  display: inline-block;
+}
 
 
 
