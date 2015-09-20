@@ -45,7 +45,9 @@ html {
   object-fit: scale-down;
 }
 
-
+.panel-footer {
+  padding: 5px 10px;
+}
 
 /* HEARTS */
 input.heartbutton {
@@ -64,7 +66,14 @@ input.unheartbutton {
   border: none;
 }
 
+.heart-buttons {
+  text-align: right;
+}
 
+.icon {
+  background: none;
+  border: none;
+}
 
 /* SINGLE PHOTO */
 

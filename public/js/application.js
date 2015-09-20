@@ -12,7 +12,10 @@ function heart() {
     var heartInfo = $(this).serialize()
     var photoID = $(this).closest('.photo').attr('id')
 
-    $('input[type=text]').val('')
+    $('#'+photoID+' #unheart').removeClass('hidden');
+    $('#'+photoID+' #heart').addClass('hidden');
+
+    $('input[type=text]').val('');
     $.ajax({
       method:"post",
       url: "/hearts",
@@ -22,16 +25,14 @@ function heart() {
 
     .done(function(response) {
       response = JSON.parse(response);
-      $('.heart_count').text("Heart Count = "+response["heart_count"]);
-      $('.comments').prepend(response.html);
-      
-      $('#'+photoID+' #unheart').removeClass('hidden');
-      $('#'+photoID+' #heart').addClass('hidden');
+      $('.comments').prepend(response.html);  
+      $('.photo'+response.photo).text(response.heart_count)
     })
 
     .fail(function(response){
       console.log("FAIL")
-      console.log(response)
+      $('#'+photoID+' #heart').removeClass('hidden');
+      $('#'+photoID+' #unheart').addClass('hidden');
     });
 
 
@@ -46,6 +47,8 @@ function unheart() {
     var heartInfo = $(this).serialize()
     var photoID = $(this).closest('.photo').attr('id')
 
+      $('#'+photoID+' #heart').removeClass('hidden');
+      $('#'+photoID+' #unheart').addClass('hidden');
 
     $.ajax({
       method: "post",
@@ -55,18 +58,17 @@ function unheart() {
 
     .done(function(response){
       response = JSON.parse(response);
-      console.log('article#'+response.heart_id);
+      console.log('#photo'+response.photo);
       if ($('.comments').length != 0) {
-        $('.heart_count').text("Heart Count = "+response["heart_count"]);
         $('#'+response.heart_id).remove();
       }
-      $('#'+photoID+' #heart').removeClass('hidden');
-      $('#'+photoID+' #unheart').addClass('hidden');
+      $('.photo'+response.photo).text(response.heart_count)
     })
 
     .fail(function(response){
       console.log("FAIL")
-      console.log(response)
+      $('#'+photoID+' #unheart').removeClass('hidden');
+      $('#'+photoID+' #heart').addClass('hidden');
     })
   });
 }

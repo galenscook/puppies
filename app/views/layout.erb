@@ -49,17 +49,17 @@
     <nav class='navbar navbar-default'>
       <div class='container-fluid'>
       <div class='navbar-header'>
-        <a class='navbar-brand' href='/photos'>Puppies</a>
+        <a class='navbar-brand' href='/photos'>puppies</a>
 
       </div>
       <div id='navbar'>
         <ul class='nav navbar-nav navbar-right'>
           <%if is_authenticated?%>
-            <li><a href='/users/<%=current_user.id%>'>My Profile</a></li>
-            <li><a href='/users/logout'>Log Out</a></li>
+            <li><a href='/users/<%=current_user.id%>'>my profile</a></li>
+            <li><a href='/users/logout'>log out</a></li>
           <%else%>
-            <li><a href='/users/new'>Sign Up</a></li>
-            <li><a href='/users/login'>Log In</a></li>
+            <li><a href='/users/new'>sign up</a></li>
+            <li><a href='/users/login'>log in</a></li>
           <%end%>
         </ul>
       </div>
