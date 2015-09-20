@@ -5,40 +5,50 @@ $(document).ready(function() {
 
 
 function heart() {
-  $('.hidden_forms').on("submit", "#heart", function(event){
+  $('.heart-buttons').on("submit", "#heart", function(event){
     event.preventDefault();
+    
     console.log("HEART")
     var heartInfo = $(this).serialize()
+    var photoID = $(this).closest('.photo').attr('id')
 
-    $('input[type=text]').val('')
+    $('#'+photoID+' #unheart').removeClass('hidden');
+    $('#'+photoID+' #heart').addClass('hidden');
+
+    $('input[type=text]').val('');
     $.ajax({
       method:"post",
       url: "/hearts",
       data: heartInfo,
-      //datatype: "json"
+      datatype: "json"
     })
 
     .done(function(response) {
       response = JSON.parse(response);
-      $('.heart_count').text("Heart Count = "+response["heart_count"]);
-      $('.comments').append('<article id="'+response.heart_id+'">'+response.comment+'</article>');
-      
-      $('#unheart').removeClass('hidden');
-      $('#heart').addClass('hidden');
+      $('.comments').prepend(response.html);  
+      $('.photo'+response.photo).text(response.heart_count)
     })
 
     .fail(function(response){
       console.log("FAIL")
-      console.log(response)
-    })
+      $('#'+photoID+' #heart').removeClass('hidden');
+      $('#'+photoID+' #unheart').addClass('hidden');
+    });
+
+
   })
 };
 
 function unheart() {
-  $('.hidden_forms').on("submit", "#unheart", function(event){
+  $('.heart-buttons').on("submit", "#unheart", function(event){
     event.preventDefault();
     console.log("UNHEART")
+
     var heartInfo = $(this).serialize()
+    var photoID = $(this).closest('.photo').attr('id')
+
+      $('#'+photoID+' #heart').removeClass('hidden');
+      $('#'+photoID+' #unheart').addClass('hidden');
 
     $.ajax({
       method: "post",
@@ -48,16 +58,17 @@ function unheart() {
 
     .done(function(response){
       response = JSON.parse(response);
-      console.log('article#'+response.heart_id);
-      $('.heart_count').text("Heart Count = "+response["heart_count"]);
-      $('article#'+response.heart_id).remove();
-      $('#heart').removeClass('hidden');
-      $('#unheart').addClass('hidden');
+      console.log('#photo'+response.photo);
+      if ($('.comments').length != 0) {
+        $('#'+response.heart_id).remove();
+      }
+      $('.photo'+response.photo).text(response.heart_count)
     })
 
     .fail(function(response){
       console.log("FAIL")
-      console.log(response)
+      $('#'+photoID+' #unheart').removeClass('hidden');
+      $('#'+photoID+' #heart').addClass('hidden');
     })
   });
 }

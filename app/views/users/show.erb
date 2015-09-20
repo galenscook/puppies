@@ -1,19 +1,26 @@
-<h1>Hello, <%= @user.username %>!</h1>
 
 
 
 
 <% if session[:user_id] == @user.id %>
-  <a href="/users/<%=@user.id%>/edit">Edit Profile</a>
+<h1>hello, <%= @user.username %>!</h1>
+  <a href="/users/<%=@user.id%>/edit">edit profile</a>
+<h4>your current puppy hearts:</h4>
+<%else%>
+<h1><%= @user.username %>'s profile</h1>
+
+<h4>current puppy hearts:</h4>
 <% end %>
 
-<h4>Your current puppy hearts:</h4>
 
 <div id="columns" data-columns=''>
   <% @user.hearts.each do |heart| %>
-    <div class='panel panel-primary'>
-      <div class='panel-heading'>HEADING</div>
-      <div class='panel-body'><a href = '/photos/<%=heart.photo_id%>'><img src='<%= heart.photo.url%>' class='img-responsive'></a></div>
+    <div class='panel panel-primary photo' id='photo<%=heart.photo_id%>'>
+      <div class='panel-body'><a href = '/photos/<%=heart.photo_id%>'><img src='<%= heart.photo.url%>' class='img-responsive' /></a></div>
+      <div class='panel-footer'>
+      <%= erb :'/hearts/_grid_hearts', locals: {photo: heart.photo} %>
+      </div>
     </div>
   <%end%>
 </div>
+

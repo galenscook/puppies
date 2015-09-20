@@ -18,6 +18,7 @@ html {
 }
 
 
+
 /* PHOTO GRID */
 @media screen and (min-width: 1px) and (max-width: 480px){
   #columns[data-columns]::before {
@@ -44,7 +45,9 @@ html {
   object-fit: scale-down;
 }
 
-
+.panel-footer {
+  padding: 5px 10px;
+}
 
 /* HEARTS */
 input.heartbutton {
@@ -63,16 +66,21 @@ input.unheartbutton {
   border: none;
 }
 
+.heart-buttons {
+  text-align: right;
+}
+
+.icon {
+  background: none;
+  border: none;
+}
+
+/* SINGLE PHOTO */
 
 
-
-
-
-
-
-
-
-
+.panel-primary.single {
+  display: inline-block;
+}
 
 
 
