@@ -11,34 +11,66 @@
   -->
   <link rel="stylesheet" href="/css/normalize.css">
 
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
   <!--
     skeleton.css for basic responsive grid
   -->
-  <link rel="stylesheet" href="/css/skeleton.css">
+<!--   <link rel="stylesheet" href="/css/skeleton.css"> -->
   <!--
     application.css is where you put your styles
   -->
-  <link rel="stylesheet" href="/css/application.css">
+  <link rel="stylesheet" href="/css/application.css" type='text/css'>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="/js/application.js"></script>
+  <!-- Font awesome -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<!-- Images Loaded -->
+
+  <script type="text/javascript" src='/js/imagesLoaded.js'></script>
+
+
+  <script type="text/javascript" src="/js/application.js"></script>
 
   <title></title>
 </head>
-<body>
+<body class='container-fluid col-md-10 col-md-offset-1'>
   <header>
-    <ul id='navbar'>
-      <li><a href='/photos'>Puppies</a></li>
-      <%if is_authenticated?%>
-        <li><a href='/users/<%=current_user.id%>'>My Profile</a></li>
-        <li><a href='/users/logout'>Log Out</a></li>
-      <%else%>
-        <li><a href='/users/new'>Sign Up</a></li>
-        <li><a href='/users/login'>Log In</a></li>
-      <%end%>
-    </ul>
-  </header>
+    <nav class='navbar navbar-default'>
+      <div class='container-fluid'>
+      <div class='navbar-header'>
+        <a class='navbar-brand' href='/photos'>puppies</a>
 
+      </div>
+      <div id='navbar'>
+        <ul class='nav navbar-nav navbar-right'>
+          <%if is_authenticated?%>
+            <li><a href='/users/<%=current_user.id%>'>my profile</a></li>
+            <li><a href='/users/logout'>log out</a></li>
+          <%else%>
+            <li><a href='/users/new'>sign up</a></li>
+            <li><a href='/users/login'>log in</a></li>
+          <%end%>
+        </ul>
+      </div>
+      </div>
+    </nav>
+  </header>
+  <br>
+  <br>
   <%= yield %>
+
+  <script type='text/javascript' src='/js/salvattore.js'></script>
 </body>
 </html>
+

@@ -18,13 +18,18 @@ GEM
     backports (3.6.0)
     bcrypt (3.1.10)
     builder (3.2.2)
+    commonjs (0.2.7)
     daemons (1.1.9)
     diff-lcs (1.2.5)
     eventmachine (1.0.3)
     faker (1.3.0)
       i18n (~> 0.5)
+    font-awesome-less (4.2.0)
+      less (~> 2.4.0)
     i18n (0.6.9)
     json (1.8.1)
+    less (2.4.0)
+      commonjs (~> 0.2.7)
     minitest (5.3.4)
     multi_json (1.10.1)
     pg (0.17.1)
@@ -72,6 +77,7 @@ DEPENDENCIES
   activesupport (~> 4.1)
   bcrypt
   faker
+  font-awesome-less
   pg
   rake
   rspec

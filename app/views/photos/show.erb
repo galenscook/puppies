@@ -1,27 +1,27 @@
-<img src='<%= @photo.url%>'>
 
-<p>Heart Count = <%= @photo.heart_count %>
-<ul>
-<% @photo.hearts.each do |heart| %>
-  <li><%=heart.comment%></li>
+<!-- <div class='photo single' id="photo<%=@photo.id%>"> -->
 
-  <%if heart.user_id == current_user.id%>
-    <form method='post' action='/hearts'>
-      <input type='hidden' name='_method' value='delete'>
-      <input type='hidden' name='user_id' value='<%=current_user.id%>'>
-      <input type='hidden' name='photo_id' value='<%=@photo.id%>'>
-      <input type='submit' value='Unheart'>
-    </form>
-  <%end%>
-<% end %>
-</ul>
-<% if @errors %>
-  <%= @errors[0] %>
-<% end %>
 
-<form method='post' action='/hearts'>
-  <input type='hidden' name='heart[user_id]' value='<%=current_user.id%>'>
-  <input type='hidden' name='heart[photo_id]' value='<%=@photo.id%>'>
-  <input type='text' name='heart[comment]' placeholder='What makes this so heartable?'>
-  <input type='submit' value='Heart it!'>
-</form>
+<div class='text-center'>
+<div class='panel panel-primary photo single' id='photo<%=@photo.id%>'>
+  <div class='panel-body'><img src='<%= @photo.url%>' class='img-responsive' /></div>
+  <div class='panel-footer'>
+  <%= erb :'/hearts/_heart_buttons', locals: {photo: @photo} %>
+  </div>
+  <ul class='list-group comments'>
+    <% @hearts.each do |heart| %>
+      <%if heart.comment != "" %>
+        <li class='list-group-item' id="<%= heart.id%>">
+          <i class='fa fa-quote-left'></i> <%=heart.comment%> <i class='fa fa-quote-right'></i>
+          --<a href='/users/<%=heart.user_id%>'><%=heart.user.username%></a>
+        </li>
+      <%end %>
+    <% end %>
+  </ul>
+</div>
+
+
+
+</div>
+
+<!-- Hidden forms to pop up after AJAX requests -->

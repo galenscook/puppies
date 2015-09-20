@@ -1,0 +1,6 @@
+<%if heart.comment != "" %>
+  <li class='list-group-item' id="<%= heart.id%>">
+    <i class='fa fa-quote-left'></i> <%=heart.comment%> <i class='fa fa-quote-right'></i>
+    --<a href='/users/<%=heart.user_id%>'><%=heart.user.username%></a>
+  </li>
+<%end %>

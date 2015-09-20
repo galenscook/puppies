@@ -1,21 +1,90 @@
-.container {
-  margin: 20px auto;
-  width: 600px;
-  padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
-th {
-  text-align: left;
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+  }
+
+.half {
+  width: 50%;
 }
 
-
-#navbar li{
+.right {
   float: right;
-  list-style-type: none;
 }
 
-#navbar a {
-  display: block;
-  width: 100px;
-  text-align: center;
+
+
+/* PHOTO GRID */
+@media screen and (min-width: 1px) and (max-width: 480px){
+  #columns[data-columns]::before {
+    content: '1 .col-xs-12';
+  }
 }
+@media screen and (min-width: 1px) and (max-width: 767px){
+  #columns[data-columns]::before {
+      content: '2 .col-xs-6';
+  }
+}
+@media screen and (min-width:768px) and (max-width: 991px){
+  #columns[data-columns]::before {
+      content: '3 .col-sm-4';
+  }
+}
+@media screen and (min-width:992px) and (max-width: 9999px){
+  #columns[data-columns]::before {
+      content: '4 .col-md-3';
+  }
+}
+
+.panel-primary {
+  object-fit: scale-down;
+}
+
+.panel-footer {
+  padding: 5px 10px;
+}
+
+/* HEARTS */
+input.heartbutton {
+  background-image: url('http://clipartist.net/Holidays/Valentines_Day/Valentines_Day/heart_icon_red_hollow_valentine-999px.png');
+  vertical-align: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+}
+
+input.unheartbutton {
+  background-image: url('http://www.clipartbest.com/cliparts/KTj/e6M/KTje6M47c.png');
+  vertical-align: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+}
+
+.heart-buttons {
+  text-align: right;
+}
+
+.icon {
+  background: none;
+  border: none;
+}
+
+/* SINGLE PHOTO */
+
+
+.panel-primary.single {
+  display: inline-block;
+}
+
+
+
+
+
+
+

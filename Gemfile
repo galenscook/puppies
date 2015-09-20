@@ -24,3 +24,7 @@ group :test do
   gem 'faker'
   gem 'rspec'
 end
+
+
+#Access Font Awesome
+gem 'font-awesome-less'
