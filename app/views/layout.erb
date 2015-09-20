@@ -22,9 +22,7 @@
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-  <!--
-    skeleton.css for basic responsive grid
-  -->
+
 <!--   <link rel="stylesheet" href="/css/skeleton.css"> -->
   <!--
     application.css is where you put your styles
@@ -54,6 +52,8 @@
       </div>
       <div id='navbar'>
         <ul class='nav navbar-nav navbar-right'>
+          <li><a href="/photos/new">add puppy</a></li>
+          <li role="separator" class="divider-vertical"></li>
           <%if is_authenticated?%>
             <li><a href='/users/<%=current_user.id%>'>my profile</a></li>
             <li><a href='/users/logout'>log out</a></li>
@@ -65,6 +65,7 @@
       </div>
       </div>
     </nav>
+ 
   </header>
   <br>
   <br>

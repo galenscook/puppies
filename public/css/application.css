@@ -17,7 +17,13 @@ html {
   float: right;
 }
 
-
+.divider-vertical {
+    height: 40px;                  
+    border-left: 1px solid gray;     
+    float: left;                     
+    opacity: 0.5;                   
+    margin: 5px 15px;                 
+}
 
 /* PHOTO GRID */
 @media screen and (min-width: 1px) and (max-width: 480px){
@@ -82,7 +88,10 @@ input.unheartbutton {
   display: inline-block;
 }
 
-
+img {
+  max-height: 650px;
+  max-width: 650px;
+}
 
 
 
