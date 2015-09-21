@@ -1,6 +1,8 @@
 $(document).ready(function() {
   heart();
   unheart();
+  lightBox();
+  hideLightBox();
 });
 
 
@@ -73,4 +75,30 @@ function unheart() {
   });
 }
 
+// Lightbox
+function lightBox() {
+  $('.panel-body').on("click", "a", function(event){
+    event.preventDefault()
+  $('#lightbox-background').fadeIn("slow")
 
+  var url = $(this).attr('href')
+
+  $.ajax({
+    method: 'get',
+    url: url,
+    dataType: 'html',
+  })
+
+  .done(function(response){
+    var lightbox = "<div class='lightbox-panel'>"+response+"</div>"
+    $('#lightbox-background').append(lightbox).fadeIn(400)
+  })
+  })
+}
+
+function hideLightBox() {
+  $('body').on('click', '#lightbox-background', function(){
+    $('.lightbox-panel').remove()
+    $(this).fadeOut(300)
+  })
+}
