@@ -42,13 +42,15 @@
 
   <title></title>
 </head>
-<body class='container-fluid col-md-10 col-md-offset-1'>
+<body>
+<div id="lightbox-background" style='display:none;'>
+</div>
+<div  class='container-fluid col-md-10 col-md-offset-1'>
   <header>
     <nav class='navbar navbar-default'>
       <div class='container-fluid'>
       <div class='navbar-header'>
         <a class='navbar-brand' href='/photos'>puppies</a>
-
       </div>
       <div id='navbar'>
         <ul class='nav navbar-nav navbar-right'>
@@ -65,12 +67,11 @@
       </div>
       </div>
     </nav>
- 
   </header>
   <br>
   <br>
   <%= yield %>
-
+  </div>
   <script type='text/javascript' src='/js/salvattore.js'></script>
 </body>
 </html>

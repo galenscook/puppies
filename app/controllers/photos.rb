@@ -20,7 +20,11 @@ end
 get '/photos/:id' do          # display a specific thing
   @photo = Photo.find(params[:id])
   @hearts = @photo.hearts.all.order(created_at: :desc)
+  if request.xhr?
+    erb :'/photos/show', layout: false
+  else
   erb :'/photos/show'
+  end
 end
 
 
