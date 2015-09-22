@@ -7,10 +7,9 @@ $(document).ready(function() {
 
 
 function heart() {
-  $('.heart-buttons').on("submit", "#heart", function(event){
+  $('body').on("submit", ".heart-buttons #heart", function(event){
     event.preventDefault();
     
-    console.log("HEART")
     var heartInfo = $(this).serialize()
     var photoID = $(this).closest('.photo').attr('id')
 
@@ -32,7 +31,6 @@ function heart() {
     })
 
     .fail(function(response){
-      console.log("FAIL")
       $('#'+photoID+' #heart').removeClass('hidden');
       $('#'+photoID+' #unheart').addClass('hidden');
     });
@@ -42,15 +40,14 @@ function heart() {
 };
 
 function unheart() {
-  $('.heart-buttons').on("submit", "#unheart", function(event){
+  $('body').on("submit", ".heart-buttons #unheart", function(event){
     event.preventDefault();
-    console.log("UNHEART")
 
     var heartInfo = $(this).serialize()
     var photoID = $(this).closest('.photo').attr('id')
 
-      $('#'+photoID+' #heart').removeClass('hidden');
-      $('#'+photoID+' #unheart').addClass('hidden');
+    $('#'+photoID+' #heart').removeClass('hidden');
+    $('#'+photoID+' #unheart').addClass('hidden');
 
     $.ajax({
       method: "post",
@@ -60,7 +57,6 @@ function unheart() {
 
     .done(function(response){
       response = JSON.parse(response);
-      console.log('#photo'+response.photo);
       if ($('.comments').length != 0) {
         $('#'+response.heart_id).remove();
       }
@@ -68,7 +64,6 @@ function unheart() {
     })
 
     .fail(function(response){
-      console.log("FAIL")
       $('#'+photoID+' #unheart').removeClass('hidden');
       $('#'+photoID+' #heart').addClass('hidden');
     })
@@ -79,6 +74,12 @@ function unheart() {
 function lightBox() {
   $('.panel-body').on("click", "a", function(event){
     event.preventDefault()
+
+  $('html, body').css({
+       'overflow': 'hidden',
+       'height': '100%'
+   });
+
   $('#lightbox-background').fadeIn("slow")
 
   var url = $(this).attr('href')
@@ -96,9 +97,22 @@ function lightBox() {
   })
 }
 
+
+// AHHH MAKE THIS WORK ONLY WHEN YOU CLICK OUTSIDE PANEL
 function hideLightBox() {
-  $('body').on('click', '#lightbox-background', function(){
-    $('.lightbox-panel').remove()
-    $(this).fadeOut(300)
+  $('#lightbox-background').on("click", ".photo.single", function(event){
+    event.stopPropagation()
   })
+  $('#lightbox-background').click(function(event){
+
+      $('#lightbox-background').fadeOut(300);
+      $('.lightbox-panel').remove();
+      $('html, body').css({
+          'overflow': 'auto',
+          'height': 'auto'
+      });
+
+    })
+
 }
+

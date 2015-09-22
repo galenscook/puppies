@@ -94,8 +94,8 @@ input.unheartbutton {
 }
 
 img {
-  max-height: 650px;
-  max-width: 650px;
+  max-height: 550px;
+  max-width: 550px;
 }
 
 
@@ -105,7 +105,7 @@ img {
   top: 0;
   left: 0;
   width: 100%;
-  height: 1500px;
+  height: 100%;
   background: rgba(0,0,0,.7);
   text-align: center;
   z-index: +1;
@@ -113,5 +113,9 @@ img {
 
 #lightbox-background .panel {
   margin-top: 50px;
+}
+
+.panel.panel-primary.photo.single {
+  z-index: +1;
 }
 
