@@ -3,6 +3,17 @@ $(document).ready(function() {
   unheart();
   lightBox();
   hideLightBox();
+
+  $(window).scroll(function() {
+    // console.log('SCROLL'+$(window).scrollTop())
+    // console.log('WINDOW'+$(window).height())
+    // console.log('DOCUMENT'+$(document).height())
+     if(Math.floor($(window).scrollTop() + $(window).height()) == $(document).height()) {
+      // infiniteScroll.requestPuppies();
+      console.log("HIT")
+     }
+  });
+
 });
 
 
@@ -98,7 +109,7 @@ function lightBox() {
 }
 
 
-// AHHH MAKE THIS WORK ONLY WHEN YOU CLICK OUTSIDE PANEL
+
 function hideLightBox() {
   $('#lightbox-background').on("click", ".photo.single", function(event){
     event.stopPropagation()
@@ -116,3 +127,44 @@ function hideLightBox() {
 
 }
 
+var infiniteScroll = {
+  start: 0,
+  stop: 19,
+  // photoTemplate: function(photoID, url, currentUser, ){}
+  requestPuppies: function(){
+    $.ajax({
+      method: 'get',
+      url: '/photos',
+      data: {start: String(this.start+20), stop: String(this.stop+20)},
+    })
+    .done(function(response){
+
+      length = response.length
+
+      test = response.slice(1, length-5)
+      sliced = test+"]"
+
+
+      parsed = JSON.parse(sliced)
+
+      
+      var grid = document.querySelector('#columns');
+      jQuery(parsed).each( function(index, element) {
+          var item = document.createElement('article');
+          salvattore['append_elements'](grid, [item]);
+          jQuery(item).html(element);
+      });
+
+    })
+  }
+}
+
+
+
+// JSON ATTEMPTS
+      // length = response.length
+      // test = response.substr(1, length-6)
+      // testlength = test.length
+
+      // sliced = test.slice(1, testlength-3)
+      // again = sliced+"]"

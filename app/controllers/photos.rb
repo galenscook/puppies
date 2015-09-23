@@ -1,6 +1,16 @@
 get '/photos' do              # display a list of all things
-  @photos = Photo.all
-  erb :'/photos/index'
+  p params
+  start = 0
+  stop = 19
+  @photos = Photo.all[start..stop]
+  if request.xhr?
+    start = params[:start].to_i
+    stop = params[:stop].to_i
+    @photos = Photo.all[start..stop]
+    erb :'/photos/_photos.json', layout: false
+  else
+    erb :'/photos/index'
+  end
 end
 
 get '/photos/new' do          # return an html form for creating a new thing

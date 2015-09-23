@@ -1,0 +1,2 @@
+'[<% @photos.each do |photo| %>"<div class='panel panel-primary photo' id='photo<%=photo.id%>'><div class='panel-body'><a href = '/photos/<%=photo.id%>'><img src='<%= photo.url%>' class='img-responsive' /></a></div><div class='panel-footer'><%= erb :'/hearts/_grid_hearts', locals: {photo: photo} %></div></div>",<%end%>]'
+

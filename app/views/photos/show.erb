@@ -1,7 +1,4 @@
 
-<!-- <div class='photo single' id="photo<%=@photo.id%>"> -->
-
-
 <div class='text-center'>
 <div class='panel panel-primary photo single' id='photo<%=@photo.id%>'>
   <div class='panel-body'><img src='<%= @photo.url%>' class='img-responsive' /></div>
@@ -10,7 +7,7 @@
   </div>
   <ul class='list-group comments'>
     <% @hearts.each do |heart| %>
-      <%if heart.comment != nil %>
+      <%if heart.comment != nil && heart.comment != ''%>
         <li class='list-group-item' id="<%= heart.id%>">
           <i class='fa fa-quote-left'></i> <%=heart.comment%> <i class='fa fa-quote-right'></i>
           --<a href='/users/<%=heart.user_id%>'><%=heart.user.username%></a>
@@ -20,5 +17,3 @@
   </ul>
 </div>
 </div>
-
-<!-- Hidden forms to pop up after AJAX requests -->
