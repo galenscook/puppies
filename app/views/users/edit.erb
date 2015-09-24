@@ -1,3 +1,9 @@
+
+<h1>edit profile</h1>
+  <form method='post' action="/users/<%=@user.id%>">
+    <input type='hidden' name='_method' value='delete'>
+    <input type='submit' value='Delete Profile' class='btn btn-default'>
+  </form>
 <% if @error_message %>
   your old password was incorrect.  puppies don't like hackers.
 <% end %>
@@ -26,7 +32,3 @@
   </div>
 </form>
 
-    <form method='post' action="/users/<%=@user.id%>">
-      <input type='hidden' name='_method' value='delete'>
-      <input type='submit' value='Delete Profile' class='btn btn-default right'>
-    </form>

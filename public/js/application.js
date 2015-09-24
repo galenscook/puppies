@@ -8,9 +8,7 @@ $(document).ready(function() {
 
 
     $(document).on("scrollend", function() {
-
       infiniteScroll.requestPuppies(scrollable);   
-
   })
 });
 
@@ -129,11 +127,12 @@ var infiniteScroll = {
   start: 0,
   stop: 19,
   requestPuppies: function(scrollable){
-    console.log(this.start)
+
+    console.log(location.pathname)
     if (scrollable){
     $.ajax({
       method: 'get',
-      url: '/photos',
+      url: location.pathname,
       data: {start: String(this.start+20), stop: String(this.stop+20)},
     })
     .done(function(response){

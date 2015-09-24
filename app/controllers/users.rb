@@ -45,7 +45,21 @@ end
 #View user profile
 get '/users/:id' do
   @user = User.find(params[:id])
-  erb :'/users/show'
+  start = 0
+  stop = 19
+  @photos = @user.hearts.order(created_at: :desc)[start..stop]
+  if request.xhr?
+    start = params[:start].to_i
+    stop = params[:stop].to_i
+    if @photos.last.id < start
+      return 400
+    end
+    @photos = @user.photos.order(created_at: :desc)[start..stop]
+    erb :'/photos/_photos.json', layout: false
+  else
+    erb :'/users/show'
+  end
+
 end
 
 #Edit user profile
