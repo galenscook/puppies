@@ -23,15 +23,15 @@ body {
 
 
 a {
-  color: #B34BCC;
+  color: #37C2DD;
 }
 
 a:hover, a:focus {
   text-decoration: none;
-  color: #B34BCC;
+  color: #37C2DD;
   font-weight: bold;
   padding-bottom: .5em;
-  border-bottom: 4px solid #B34BCC;
+  border-bottom: 4px solid #37C2DD;
   background-color: transparent;
   }
 
@@ -44,8 +44,8 @@ a.navbar-brand {
   font-size: 1.5em;
 }
 a.navbar-brand span {
-  font-family: 'Playfair Display', serif;
-  color: #B34BCC;
+  font-family: 'Righteous', serif;
+  color: #37C2DD;
   font-weight: bold;
   font-size: 3em;
 }
@@ -58,10 +58,10 @@ a.navbar-brand span {
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
-  color: #B34BCC;
+  color: #37C2DD;
   font-weight: bold;
   padding-bottom: .5em;
-  border-bottom: 4px solid #B34BCC;
+  border-bottom: 4px solid #37C2DD;
   background-color: transparent;
 }
 
@@ -106,7 +106,7 @@ nav.navbar .container-fluid {
 
 .panel-primary {
   object-fit: scale-down;
-  border-color: rgb(114, 59, 127)
+  border-color: rgba(30, 98, 112, 0.71)
 }
 
 .panel-footer {
@@ -140,7 +140,7 @@ input.unheartbutton {
 }
 
 i.fa {
-  color: rgba(144, 6, 177, 0.46);
+  color: rgba(187, 52, 142, 0.63);
 }
 
 /* SINGLE PHOTO */
