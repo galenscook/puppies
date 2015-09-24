@@ -32,6 +32,8 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
+  <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
+
 <!-- Images Loaded -->
 
   <script type="text/javascript" src='/js/imagesLoaded.js'></script>
@@ -49,11 +51,11 @@
     <nav class='navbar'>
       <div class='container-fluid'>
       <div class='navbar-header'>
-        <a class='navbar-brand' href='/photos'>puppies</a>
+        <a class='navbar-brand' href='/photos'>all things <span>baby</span></a>
       </div>
       <div id='navbar'>
         <ul class='nav navbar-nav navbar-right'>
-          <li><a href="/photos/new">add puppy</a></li>
+          <li><a href="/photos/new">add photo</a></li>
           <li role="separator" class="divider-vertical"></li>
           <%if is_authenticated?%>
             <li><a href='/users/<%=current_user.id%>'>my profile</a></li>
@@ -67,8 +69,6 @@
       </div>
     </nav>
   </header>
-  <br>
-  <br>
   <%= yield %>
   </div>
   <script type='text/javascript' src='/js/salvattore.js'></script>
