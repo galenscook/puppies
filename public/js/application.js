@@ -1,14 +1,24 @@
+scrollable = true
+
 $(document).ready(function() {
   heart();
   unheart();
+  lightBox();
+  hideLightBox();
+
+
+    $(document).on("scrollend", function() {
+
+      infiniteScroll.requestPuppies(scrollable);   
+
+  })
 });
 
 
 function heart() {
-  $('.heart-buttons').on("submit", "#heart", function(event){
+  $('body').on("submit", ".heart-buttons #heart", function(event){
     event.preventDefault();
     
-    console.log("HEART")
     var heartInfo = $(this).serialize()
     var photoID = $(this).closest('.photo').attr('id')
 
@@ -30,7 +40,6 @@ function heart() {
     })
 
     .fail(function(response){
-      console.log("FAIL")
       $('#'+photoID+' #heart').removeClass('hidden');
       $('#'+photoID+' #unheart').addClass('hidden');
     });
@@ -40,15 +49,14 @@ function heart() {
 };
 
 function unheart() {
-  $('.heart-buttons').on("submit", "#unheart", function(event){
+  $('body').on("submit", ".heart-buttons #unheart", function(event){
     event.preventDefault();
-    console.log("UNHEART")
 
     var heartInfo = $(this).serialize()
     var photoID = $(this).closest('.photo').attr('id')
 
-      $('#'+photoID+' #heart').removeClass('hidden');
-      $('#'+photoID+' #unheart').addClass('hidden');
+    $('#'+photoID+' #heart').removeClass('hidden');
+    $('#'+photoID+' #unheart').addClass('hidden');
 
     $.ajax({
       method: "post",
@@ -58,7 +66,6 @@ function unheart() {
 
     .done(function(response){
       response = JSON.parse(response);
-      console.log('#photo'+response.photo);
       if ($('.comments').length != 0) {
         $('#'+response.heart_id).remove();
       }
@@ -66,11 +73,101 @@ function unheart() {
     })
 
     .fail(function(response){
-      console.log("FAIL")
       $('#'+photoID+' #unheart').removeClass('hidden');
       $('#'+photoID+' #heart').addClass('hidden');
     })
   });
 }
 
+// Lightbox
+function lightBox() {
+  $('body').on("click", ".panel-body a", function(event){
+    event.preventDefault()
 
+  $('html, body').css({
+       'overflow': 'hidden',
+       'height': '100%'
+   });
+
+  $('#lightbox-background').fadeIn("slow")
+
+  var url = $(this).attr('href')
+
+  $.ajax({
+    method: 'get',
+    url: url,
+    dataType: 'html',
+  })
+
+  .done(function(response){
+    var lightbox = "<div class='lightbox-panel'>"+response+"</div>"
+    $('#lightbox-background').append(lightbox).fadeIn(400)
+  })
+  })
+}
+
+
+
+function hideLightBox() {
+  $('#lightbox-background').on("click", ".photo.single", function(event){
+    event.stopPropagation()
+  })
+  $('#lightbox-background').click(function(event){
+
+      $('#lightbox-background').fadeOut(300);
+      $('.lightbox-panel').remove();
+      $('html, body').css({
+          'overflow': 'auto',
+          'height': 'auto'
+      });
+
+    })
+
+}
+
+var infiniteScroll = {
+  start: 0,
+  stop: 19,
+  requestPuppies: function(scrollable){
+    console.log(this.start)
+    if (scrollable){
+    $.ajax({
+      method: 'get',
+      url: '/photos',
+      data: {start: String(this.start+20), stop: String(this.stop+20)},
+    })
+    .done(function(response){
+
+      length = response.length
+      test = response.slice(1, length-5)
+      sliced = test+"]"
+      parsed = JSON.parse(sliced)
+
+      var grid = document.querySelector('#columns');
+      jQuery(parsed).each( function(index, element) {
+          var item = document.createElement('article');
+          salvattore['append_elements'](grid, [item]);
+          jQuery(item).html(element);
+      })
+      
+    })
+    .fail(function(response){
+      if($('#end_scroll').length === 0){
+        $('#columns').append('<div class="panel" id="end_scroll"><h3>That\'s all we have.  Go find more to <a href=\'photos/new\'>add to our collection!</a></h3></div>')
+    }
+    })
+      this.start += 20
+      this.stop += 20
+    }
+  }
+}
+
+
+
+// JSON ATTEMPTS
+      // length = response.length
+      // test = response.substr(1, length-6)
+      // testlength = test.length
+
+      // sliced = test.slice(1, testlength-3)
+      // again = sliced+"]"

@@ -1,7 +1,4 @@
 
-
-
-
 <% if session[:user_id] == @user.id %>
 <h1>hello, <%= @user.username %>!</h1>
   <a href="/users/<%=@user.id%>/edit">edit profile</a>
@@ -11,8 +8,6 @@
 
 <h4>current puppy hearts:</h4>
 <% end %>
-
-
 <div id="columns" data-columns=''>
   <% @user.hearts.each do |heart| %>
     <div class='panel panel-primary photo' id='photo<%=heart.photo_id%>'>

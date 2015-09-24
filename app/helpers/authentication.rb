@@ -7,4 +7,7 @@ helpers do
     user = User.find(session[:user_id])
     user
   end
+
+  def is_admin?
+  end
 end
