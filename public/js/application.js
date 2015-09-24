@@ -6,10 +6,27 @@ $(document).ready(function() {
   lightBox();
   hideLightBox();
 
-
-    $(document).on("scrollend", function() {
-      infiniteScroll.requestPuppies(scrollable);   
+  $(document).on("scrollend", function() {
+    infiniteScroll.requestPuppies(scrollable);   
   })
+
+  // Setup for Facebook integration
+  // window.fbAsyncInit = function() {
+  //   FB.init({
+  //     appId      : '1639495569664010',
+  //     xfbml      : true,
+  //     version    : 'v2.4'
+  //   });
+  // };
+
+  // (function(d, s, id){
+  //    var js, fjs = d.getElementsByTagName(s)[0];
+  //    if (d.getElementById(id)) {return;}
+  //    js = d.createElement(s); js.id = id;
+  //    js.src = "//connect.facebook.net/en_US/sdk.js";
+  //    fjs.parentNode.insertBefore(js, fjs);
+  //  }(document, 'script', 'facebook-jssdk'));
+
 });
 
 
@@ -152,7 +169,7 @@ var infiniteScroll = {
     })
     .fail(function(response){
       if($('#end_scroll').length === 0){
-        $('#columns').append('<div class="panel" id="end_scroll"><h3>That\'s all we have.  Go find more to <a href=\'photos/new\'>add to our collection!</a></h3></div>')
+        $('#columns').append('<div class="panel" id="end_scroll"><h3>That\'s all we have.  Go find more to <a href=\'/photos/new\'>add to our collection!</a></h3></div>')
     }
     })
       this.start += 20
