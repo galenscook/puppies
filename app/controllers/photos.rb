@@ -1,6 +1,21 @@
 get '/photos' do              # display a list of all things
-  @photos = Photo.all
-  erb :'/photos/index'
+  p params
+  start = 0
+  stop = 19
+  @photos = Photo.all.order(created_at: :desc)[start..stop]
+  # @photos.sort!{|a, b| b.created_at <=> a.created_at}
+  # @photos = @photos.order(created_at: :desc)
+  if request.xhr?
+    start = params[:start].to_i
+    stop = params[:stop].to_i
+    if Photo.last.id < start
+      return 400
+    end
+    @photos = Photo.all.order(created_at: :desc)[start..stop]
+    erb :'/photos/_photos.json', layout: false
+  else
+    erb :'/photos/index'
+  end
 end
 
 get '/photos/new' do          # return an html form for creating a new thing
@@ -8,12 +23,15 @@ get '/photos/new' do          # return an html form for creating a new thing
 end
 
 post '/photos' do             # create a new thing
-  photo = Photo.create(url: params[:url])
+  photo = Photo.new(url: params[:url])
   if photo.save
     redirect "/photos/#{photo.id}"
   else
-    @errors = photo.errors.full_messages
-    erb :'/photos/new'
+    p "HERE"
+    @photo = Photo.find_by(url: params[:url])
+    @hearts = @photo.hearts.all.order(created_at: :desc)
+    @errors = "Someone else beat you to this one!  Here it is."
+    erb :'/photos/show'
   end
 end
 

@@ -22,6 +22,10 @@ body {
 }
 
 
+
+
+/* Nav bar */
+
 .divider-vertical {
     height: 40px;                  
     border-left: 1px solid gray;     
@@ -29,6 +33,7 @@ body {
     opacity: 0.5;                   
     margin: 5px 15px;                 
 }
+
 
 /* PHOTO GRID */
 @media screen and (min-width: 1px) and (max-width: 480px){
@@ -119,3 +124,7 @@ img {
   z-index: +1;
 }
 
+#end_scroll {
+  clear: both;
+  text-align: center;
+}
