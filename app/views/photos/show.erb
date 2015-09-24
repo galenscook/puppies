@@ -1,5 +1,10 @@
 
 <div class='text-center'>
+  <div class='panel'>
+    <% if @errors %>
+      <p><%= @errors %></p>
+    <% end %>
+  </div>
 <div class='panel panel-primary photo single' id='photo<%=@photo.id%>'>
   <div class='panel-body'><img src='<%= @photo.url%>' class='img-responsive' /></div>
   <div class='panel-footer'>

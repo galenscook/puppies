@@ -119,3 +119,7 @@ img {
   z-index: +1;
 }
 
+#end_scroll {
+  clear: both;
+  text-align: center;
+}

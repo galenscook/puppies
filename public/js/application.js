@@ -1,19 +1,17 @@
+scrollable = true
+
 $(document).ready(function() {
   heart();
   unheart();
   lightBox();
   hideLightBox();
 
-  $(window).scroll(function() {
-    // console.log('SCROLL'+$(window).scrollTop())
-    // console.log('WINDOW'+$(window).height())
-    // console.log('DOCUMENT'+$(document).height())
-     if(Math.floor($(window).scrollTop() + $(window).height()) == $(document).height()) {
-      // infiniteScroll.requestPuppies();
-      console.log("HIT")
-     }
-  });
 
+    $(document).on("scrollend", function() {
+
+      infiniteScroll.requestPuppies(scrollable);   
+
+  })
 });
 
 
@@ -83,7 +81,7 @@ function unheart() {
 
 // Lightbox
 function lightBox() {
-  $('.panel-body').on("click", "a", function(event){
+  $('body').on("click", ".panel-body a", function(event){
     event.preventDefault()
 
   $('html, body').css({
@@ -130,8 +128,9 @@ function hideLightBox() {
 var infiniteScroll = {
   start: 0,
   stop: 19,
-  // photoTemplate: function(photoID, url, currentUser, ){}
-  requestPuppies: function(){
+  requestPuppies: function(scrollable){
+    console.log(this.start)
+    if (scrollable){
     $.ajax({
       method: 'get',
       url: '/photos',
@@ -140,22 +139,26 @@ var infiniteScroll = {
     .done(function(response){
 
       length = response.length
-
       test = response.slice(1, length-5)
       sliced = test+"]"
-
-
       parsed = JSON.parse(sliced)
 
-      
       var grid = document.querySelector('#columns');
       jQuery(parsed).each( function(index, element) {
           var item = document.createElement('article');
           salvattore['append_elements'](grid, [item]);
           jQuery(item).html(element);
-      });
-
+      })
+      
     })
+    .fail(function(response){
+      if($('#end_scroll').length === 0){
+        $('#columns').append('<div class="panel" id="end_scroll"><h3>That\'s all we have.  Go find more to <a href=\'photos/new\'>add to our collection!</a></h3></div>')
+    }
+    })
+      this.start += 20
+      this.stop += 20
+    }
   }
 }
 
