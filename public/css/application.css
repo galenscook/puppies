@@ -22,10 +22,57 @@ body {
 }
 
 
+a {
+  color: #37C2DD;
+}
 
+a:hover, a:focus {
+  text-decoration: none;
+  color: #37C2DD;
+  font-weight: bold;
+  padding-bottom: .5em;
+  border-bottom: 4px solid #37C2DD;
+  background-color: transparent;
+  }
 
 /* Nav bar */
+nav a {
+  color: black;
+}
 
+a.navbar-brand {
+  font-size: 1.5em;
+}
+a.navbar-brand span {
+  font-family: 'Righteous', serif;
+  color: #37C2DD;
+  font-weight: bold;
+  font-size: 3em;
+}
+
+.navbar-header a:hover, a:focus{
+  text-decoration: none;
+  color: inherit;
+  font-weight: normal;
+  border-bottom: none;
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+  color: #37C2DD;
+  font-weight: bold;
+  padding-bottom: .5em;
+  border-bottom: 4px solid #37C2DD;
+  background-color: transparent;
+}
+
+nav.navbar {
+  min-height: 6em;
+  border-bottom: 4px solid black;
+}
+
+nav.navbar .container-fluid {
+  padding-top: 1em;
+}
 .divider-vertical {
     height: 40px;                  
     border-left: 1px solid gray;     
@@ -59,6 +106,7 @@ body {
 
 .panel-primary {
   object-fit: scale-down;
+  border-color: rgba(30, 98, 112, 0.71)
 }
 
 .panel-footer {
@@ -91,6 +139,10 @@ input.unheartbutton {
   border: none;
 }
 
+i.fa {
+  color: rgba(187, 52, 142, 0.63);
+}
+
 /* SINGLE PHOTO */
 
 
@@ -103,7 +155,14 @@ img {
   max-width: 550px;
 }
 
-
+p i.up {
+  margin-right: 0.5em;
+  vertical-align: text-top;
+}
+p i.down {
+  margin-left: 0.5em;
+  vertical-align: baseline;
+}
 /* Lightbox */
 #lightbox-background {
   position: absolute;

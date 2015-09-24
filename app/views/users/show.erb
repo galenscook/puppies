@@ -1,7 +1,7 @@
 
 <% if session[:user_id] == @user.id %>
 <h1>hello, <%= @user.username %>!</h1>
-  <a href="/users/<%=@user.id%>/edit">edit profile</a>
+  <span class='right'><a href="/users/<%=@user.id%>/edit">edit profile</a></span>
 <h4>your current puppy hearts:</h4>
 <%else%>
 <h1><%= @user.username %>'s profile</h1>
@@ -9,7 +9,7 @@
 <h4>current puppy hearts:</h4>
 <% end %>
 <div id="columns" data-columns=''>
-  <% @user.hearts.each do |heart| %>
+  <% @photos.each do |heart| %>
     <div class='panel panel-primary photo' id='photo<%=heart.photo_id%>'>
       <div class='panel-body'><a href = '/photos/<%=heart.photo_id%>'><img src='<%= heart.photo.url%>' class='img-responsive' /></a></div>
       <div class='panel-footer'>

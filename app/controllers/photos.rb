@@ -1,10 +1,7 @@
 get '/photos' do              # display a list of all things
-  p params
   start = 0
   stop = 19
   @photos = Photo.all.order(created_at: :desc)[start..stop]
-  # @photos.sort!{|a, b| b.created_at <=> a.created_at}
-  # @photos = @photos.order(created_at: :desc)
   if request.xhr?
     start = params[:start].to_i
     stop = params[:stop].to_i
