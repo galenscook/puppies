@@ -41,6 +41,10 @@ a:hover, a:focus {
   background-color: transparent;
   }
 
+input.form-control:focus {
+  outline-color: #37C2DD;
+}
+
 /* Nav bar */
 nav a {
   color: black;
@@ -98,20 +102,32 @@ nav.navbar .container-fluid {
   #columns[data-columns]::before {
     content: '1 .col-xs-12';
   }
+  .fa.fa-heart-o {
+    font-size: 0.75em;
+  }
 }
 @media screen and (min-width: 1px) and (max-width: 767px){
   #columns[data-columns]::before {
       content: '2 .col-xs-6';
+  }
+  .fa.fa-heart-o {
+    font-size: 1em;
   }
 }
 @media screen and (min-width:768px) and (max-width: 991px){
   #columns[data-columns]::before {
       content: '3 .col-sm-4';
   }
+  .fa.fa-heart-o {
+    font-size: 1.5em;
+  }
 }
 @media screen and (min-width:992px) and (max-width: 9999px){
   #columns[data-columns]::before {
       content: '4 .col-md-3';
+  }
+  .fa.fa-heart-o {
+    font-size: 2em;
   }
 }
 

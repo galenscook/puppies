@@ -13,7 +13,7 @@
       <input type='text' class='form-control' name='heart[comment]' placeholder='What makes this so heartable?'>
     </div>
     <label class='heart-count photo<%=photo.id%>'><%= photo.heart_count %></label>
-    <button type='submit' class='icon'><i class="fa fa-heart-o fa-2x"></i></button>
+    <button type='submit' class='icon'><i class="fa fa-heart-o"></i></button>
   </form>
 
   <form method='post' action='/hearts' id='unheart' <%if !(photo.hearts.find_by(user_id: current_user.id))%>class="hidden"<%end%>>
@@ -21,10 +21,10 @@
     <input type='hidden' name='user_id' value='<%=current_user.id%>'>
     <input type='hidden' name='photo_id' value='<%=photo.id%>'>
     <label class='heart-count photo<%=photo.id%>'><%= photo.heart_count %></label>
-    <button type='submit' class='icon'><i class="fa fa-heart fa-2x"></i></button>
+    <button type='submit' class='icon'><i class="fa fa-heart"></i></button>
   </form>
   <% else %>
-  <label class='heart-count photo<%=photo.id%>'><%= photo.heart_count %></label><i class="fa fa-heart-o fa-2x login"></i>
+  <label class='heart-count photo<%=photo.id%>'><%= photo.heart_count %></label><i class="fa fa-heart-o login"></i>
   <div class='login-prompt' style='display: none;'>please <a href='/users/login'>log in</a> or <a href='/users/new'>sign up</a> to heart.</div>
   <%end%>
 </div>
