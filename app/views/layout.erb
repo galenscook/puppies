@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
   <!-- Latest compiled and minified JavaScript -->
-  <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 
@@ -57,9 +57,6 @@
           <li><a href="/photos/new">add puppy</a></li>
           <li role="separator" class="divider-vertical"></li>
           <%if is_authenticated?%>
-            <%if is_admin? %>
-              <li><a href='/admin'>admin dashboard</a></li>
-            <%end%>
             <li><a href='/users/<%=current_user.id%>'>my profile</a></li>
             <li><a href='/users/logout'>log out</a></li>
           <%else%>

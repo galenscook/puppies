@@ -24,6 +24,7 @@ post '/photos' do             # create a new thing
   if photo.save
     redirect "/photos/#{photo.id}"
   else
+    p "HERE"
     @photo = Photo.find_by(url: params[:url])
     @hearts = @photo.hearts.all.order(created_at: :desc)
     @errors = "Someone else beat you to this one!  Here it is."
@@ -43,16 +44,6 @@ end
 
 
 
-#ADMIN ONLY
-get '/photos/:id/delete' do      # delete a specific thing
-  if !is_admin?
-    erb :access_denied
-  else
-    photo = Photo.find(params[:id])
-    photo.destroy
-    redirect '/'
-  end
-end
 
 =begin
 Unnecessary routes?
@@ -63,5 +54,8 @@ end
 put '/photos/:id' do          # update a specific thing
 end
 
+#ADMIN ONLY
+delete  '/photos/:id' do      # delete a specific thing
+end
 
 =end
