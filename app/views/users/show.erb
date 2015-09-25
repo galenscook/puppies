@@ -1,25 +1,13 @@
-<% if is_authenticated? %>
-  <%if current_user.id == @user.id %>
-    <h1>hello, <%= @user.username %>!</h1>
-      <span class='right'><a href="/users/<%=@user.id%>/edit">edit profile</a></span>
-    <h4>your current puppy hearts:</h4>
-  <%else%>
-    <h1><%= @user.username %>'s profile</h1>
-    <% if is_admin? %>
-      <form method='post' action="/users/<%=@user.id%>">
-        <input type='hidden' name='_method' value='delete'>
-        <input type='submit' value='Delete Profile' class='btn btn-default'>
-      </form>
-    <%end%>
-    <h4>current puppy hearts:</h4>
-  <%end%>
 
-    
+<% if session[:user_id] == @user.id %>
+<h1>hello, <%= @user.username %>!</h1>
+  <span class='right'><a href="/users/<%=@user.id%>/edit">edit profile</a></span>
+<h4>your current puppy hearts:</h4>
 <%else%>
-  <h1><%= @user.username %>'s profile</h1>
-  <h4>current puppy hearts:</h4>
-<%end%>
+<h1><%= @user.username %>'s profile</h1>
 
+<h4>current puppy hearts:</h4>
+<% end %>
 <div id="columns" data-columns=''>
   <% @photos.each do |heart| %>
     <div class='panel panel-primary photo' id='photo<%=heart.photo_id%>'>

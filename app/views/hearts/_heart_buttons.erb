@@ -1,12 +1,6 @@
 
 <div class = 'heart-buttons'>
   <% if is_authenticated? %>
-    <% if is_admin? %>
-      <div class='admin-delete left'>
-        <a href="/photos/<%=photo.id%>/delete">Delete Photo</a>
-      </div>
-    <%end%>
-  
   <form method='post' action='/hearts' id='heart' <%if (photo.hearts.find_by(user_id: current_user.id))%>class="hidden"<%end%>>
     <input type='hidden' name='heart[user_id]' value='<%=current_user.id%>'>
     <input type='hidden' name='heart[photo_id]' value='<%=photo.id%>'>
@@ -27,5 +21,3 @@
 
   <% end %>
 </div>
-
-
