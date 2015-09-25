@@ -1,7 +1,7 @@
 <% if is_authenticated? %>
   <%if current_user.id == @user.id %>
-    <h1>hello, <%= @user.username %>!</h1>
-      <span class='right'><a href="/users/<%=@user.id%>/edit">edit profile</a></span>
+    <h1>hello, <%= @user.username %>!<span class='right'><a href="/users/<%=@user.id%>/edit"><button class='btn btn-default'>edit profile</button></a></span></h1>
+    
     <h4>your current puppy hearts:</h4>
   <%else%>
     <h1><%= @user.username %>'s profile</h1>

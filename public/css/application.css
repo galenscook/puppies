@@ -37,13 +37,14 @@ a:hover, a:focus {
   color: #37C2DD;
   font-weight: bold;
   padding-bottom: .5em;
-  border-bottom: 4px solid #37C2DD;
+  /*border-bottom: 4px solid #37C2DD;*/
   background-color: transparent;
   }
 
 /* Nav bar */
 nav a {
   color: black;
+  font-weight: bold;
 }
 
 a.navbar-brand {
@@ -59,13 +60,12 @@ a.navbar-brand span {
 .navbar-header a:hover, a:focus{
   text-decoration: none;
   color: inherit;
-  font-weight: normal;
   border-bottom: none;
 }
-.nav > li > a:hover,
-.nav > li > a:focus {
+
+.navbar-nav>li>a:hover,
+.navbar-nav>li>a:focus {
   color: #37C2DD;
-  font-weight: bold;
   padding-bottom: .5em;
   border-bottom: 4px solid #37C2DD;
   background-color: transparent;
@@ -79,12 +79,9 @@ nav.navbar {
 nav.navbar .container-fluid {
   padding-top: 1em;
 }
-.divider-vertical {
-    height: 40px;                  
-    border-left: 1px solid gray;     
-    float: left;                     
-    opacity: 0.5;                   
-    margin: 5px 15px;                 
+
+.navbar-nav>li>a.attention {
+  color: #37C2DD;
 }
 
 
