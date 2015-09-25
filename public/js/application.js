@@ -146,7 +146,6 @@ var infiniteScroll = {
   stop: 19,
   requestPuppies: function(scrollable){
 
-    console.log(location.pathname)
     if (scrollable){
     $.ajax({
       method: 'get',

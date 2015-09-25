@@ -21,7 +21,9 @@ body {
   float: right;
 }
 
-
+.clear {
+  clear: both;
+}
 .hidden {
   display: none;
 }

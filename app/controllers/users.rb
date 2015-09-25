@@ -88,13 +88,16 @@ end
 
 #delete user profile
 delete '/users/:id' do
-  if current_user.id.to_s != params[:id]
-    erb :access_denied
-  else
+  if is_admin? || current_user.id.to_s == params[:id]
     user = User.find(params[:id])
     user.destroy
-    session.delete(:user_id)
+    if !is_admin?
+      session.delete(:user_id)
+    end
     redirect '/'
+  else current_user.id.to_s != params[:id]
+    erb :access_denied
   end
 end
+ 
  
