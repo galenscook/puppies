@@ -21,6 +21,13 @@ body {
   float: right;
 }
 
+.clear {
+  clear: both;
+}
+
+.hidden {
+  display: none;
+}
 
 a {
   color: #37C2DD;
@@ -141,6 +148,10 @@ input.unheartbutton {
 
 i.fa {
   color: rgba(187, 52, 142, 0.63);
+}
+
+.login-prompt {
+  text-align: center;
 }
 
 /* SINGLE PHOTO */
