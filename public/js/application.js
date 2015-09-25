@@ -5,6 +5,7 @@ $(document).ready(function() {
   unheart();
   lightBox();
   hideLightBox();
+  loginPrompt();
 
   $(document).on("scrollend", function() {
     infiniteScroll.requestPuppies(scrollable);   
@@ -168,7 +169,7 @@ var infiniteScroll = {
     })
     .fail(function(response){
       if($('#end_scroll').length === 0){
-        $('#columns').append('<div class="panel" id="end_scroll"><h3>That\'s all we have.  Go find more to <a href=\'/photos/new\'>add to our collection!</a></h3></div>')
+        $('#columns').append('<div class="panel" id="end_scroll"><h3>that\'s all we have.  go find more to <a href=\'/photos/new\'>add to our collection!</a></h3></div>')
     }
     })
       this.start += 20
@@ -177,7 +178,16 @@ var infiniteScroll = {
   }
 }
 
-
+function loginPrompt() {
+  $('body').on('click', '.login', function(){
+    // console.log($(this).closest('div.panel-footer'))
+    // if($(this).closest('.panel-footer > .login-prompt').length === 0){
+      $(this).parent().children('.login-prompt').fadeIn().delay(2000).fadeOut('slow')
+      // $(this).closest('.panel-footer').prepend("<div class='login-prompt'>please <a href='/login'>log in</a> or <a href='/users/new'>sign up</a> to heart.</div>").remove().delay(10000000000000)
+      // $('.login-prompt').remove().delay(10000000000000)
+    // }
+  })
+}
 
 // JSON ATTEMPTS
       // length = response.length
