@@ -1,4 +1,5 @@
 post '/hearts' do
+  p "HERE"
   @heart = Heart.create(params[:heart])
   @errors = @heart.errors.full_messages
   @photo = Photo.find(@heart.photo_id)
