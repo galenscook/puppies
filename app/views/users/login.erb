@@ -1,17 +1,19 @@
-<% if @error_message %>
-  your login information was incorrect.  puppies don't like hackers.
-<% end %>
+<div class='user-form'>
+  <% if @error_message %>
+    your login information was incorrect.  puppies don't like hackers.
+  <% end %>
 
-
-
-<form method='post' action='/users/login' class='col-md-4 col-md-offset-4'>
-  <div class='form-group'>
-    <label for='username'>username:</label>
-    <input name='username' type='text' class='form-control'>
-  </div>
-  <div class='form-group'>
-    <label for='password'>password:</label>
-    <input name='password' type='password' class='form-control'>
-  </div>
-  <input type='submit' value='Log In' class='btn btn-default'>
-</form>
+  <form method='post' action='/users/login' class='col-md-4 col-md-offset-4'>
+  <h1>log in</h1>
+    <div class='form-group'>
+      <label for='username'>username:</label>
+      <input name='username' type='text' class='form-control'>
+    </div>
+    <div class='form-group'>
+      <label for='password'>password:</label>
+      <input name='password' type='password' class='form-control'>
+    </div>
+    <input type='submit' value='Log In' class='btn btn-default'>
+  </form>
+</div>
+<br>

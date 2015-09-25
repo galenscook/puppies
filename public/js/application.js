@@ -6,10 +6,12 @@ $(document).ready(function() {
   lightBox();
   hideLightBox();
   loginPrompt();
-
+  showForm();
   $(document).on("scrollend", function() {
     infiniteScroll.requestPuppies(scrollable);   
   })
+
+  
 
   // Setup for Facebook integration
   // window.fbAsyncInit = function() {
@@ -30,6 +32,27 @@ $(document).ready(function() {
 
 });
 
+function showForm() {
+  $('body').on('click', '.call-form', function(event){
+    event.preventDefault()
+    var url = $(this).attr('href')
+
+    $.ajax({
+      method: 'get',
+      url: url,
+    })
+    .done(function(response){
+      if($('.user-form').length == 0){
+        $('.main').prepend(response)
+      }
+      else{
+        $('.user-form').remove()
+        $('.main').prepend(response)
+      }
+    })
+    
+  })
+}
 
 function heart() {
   $('body').on("submit", ".heart-buttons #heart", function(event){

@@ -4,7 +4,11 @@ get '/session' do
 end
 #send to registration form
 get '/users/new' do
-  erb :'/users/new'
+  if request.xhr?
+    erb :'/users/new', layout: false
+  else
+    erb :'/users/new'
+  end
 end
 
 #add new user to database
@@ -21,7 +25,11 @@ end
 
 #sends user to login page   <<--- NECESSARY??
 get '/users/login' do
-  erb :'/users/login'
+  if request.xhr?
+    erb :'/users/login', layout: false
+  else
+    erb :'/users/login'
+  end
 end
 
 #sends login request to database

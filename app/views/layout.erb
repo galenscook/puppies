@@ -68,8 +68,8 @@
             <li><a href='/users/<%=current_user.id%>'>my profile</a></li>
             <li><a href='/users/logout'>log out</a></li>
           <%else%>
-            <li><a href='/users/new'>sign up</a></li>
-            <li><a href='/users/login'>log in</a></li>
+            <li><a href='/users/new' class='call-form'>sign up</a></li>
+            <li><a href='/users/login' class='call-form'>log in</a></li>
           <%end%>
         </ul>
       </div>
@@ -78,6 +78,7 @@
   </nav>
     
   </header>
+
 <div class='main container-fluid col-md-10 col-md-offset-1'>
   <%= yield %>
   </div>

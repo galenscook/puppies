@@ -85,6 +85,14 @@ nav.navbar .container-fluid {
 }
 
 
+/*Login/Sign Up forms*/
+
+/*.user-form {
+  margin: 2em;
+  padding: 15px;
+
+}*/
+
 /* PHOTO GRID */
 @media screen and (min-width: 1px) and (max-width: 480px){
   #columns[data-columns]::before {
@@ -105,6 +113,11 @@ nav.navbar .container-fluid {
   #columns[data-columns]::before {
       content: '4 .col-md-3';
   }
+}
+
+#columns {
+  clear: both;
+  padding-top: 2em;
 }
 
 .panel-primary {
