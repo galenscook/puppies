@@ -57,6 +57,9 @@
           <li><a href="/photos/new">add puppy</a></li>
           <li role="separator" class="divider-vertical"></li>
           <%if is_authenticated?%>
+            <%if is_admin? %>
+              <li><a href='/admin'>admin dashboard</a></li>
+            <%end%>
             <li><a href='/users/<%=current_user.id%>'>my profile</a></li>
             <li><a href='/users/logout'>log out</a></li>
           <%else%>

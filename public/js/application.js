@@ -145,7 +145,7 @@ var infiniteScroll = {
   stop: 19,
   requestPuppies: function(scrollable){
 
-    console.log(location.pathname)
+    // console.log(location.pathname)
     if (scrollable){
     $.ajax({
       method: 'get',
@@ -153,7 +153,6 @@ var infiniteScroll = {
       data: {start: String(this.start+20), stop: String(this.stop+20)},
     })
     .done(function(response){
-
       length = response.length
       test = response.slice(1, length-5)
       sliced = test+"]"

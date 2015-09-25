@@ -26,3 +26,14 @@ delete '/hearts' do
     redirect "/photos/#{params[:photo_id]}"
   end
 end
+
+#Admin delete
+get '/hearts/:id/delete' do
+  if !is_admin?
+    erb :access_denied
+  else
+    heart = Heart.find(params[:id])
+    heart.destroy
+    redirect "/photos/#{heart.photo.id}"
+  end
+end

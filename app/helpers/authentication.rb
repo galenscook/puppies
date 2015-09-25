@@ -9,5 +9,8 @@ helpers do
   end
 
   def is_admin?
+    p "HELLO"
+    current_user === User.find_by(username: "admin")
   end
+
 end
