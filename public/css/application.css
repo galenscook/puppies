@@ -46,13 +46,14 @@ input.form-control:focus {
 }
 
 /* Nav bar */
-nav a {
+.navbar-default a {
   color: black;
   font-weight: bold;
 }
 
 a.navbar-brand {
   font-size: 1.5em;
+  color: black;
 }
 a.navbar-brand span {
   font-family: 'Righteous', serif;
@@ -102,7 +103,7 @@ nav.navbar .container-fluid {
   #columns[data-columns]::before {
     content: '1 .col-xs-12';
   }
-  .fa.fa-heart-o {
+  .fa.fa-heart-o, .fa.fa-heart {
     font-size: 0.75em;
   }
 }
@@ -110,7 +111,7 @@ nav.navbar .container-fluid {
   #columns[data-columns]::before {
       content: '2 .col-xs-6';
   }
-  .fa.fa-heart-o {
+  .fa.fa-heart-o, .fa.fa-heart {
     font-size: 1em;
   }
 }
@@ -118,7 +119,7 @@ nav.navbar .container-fluid {
   #columns[data-columns]::before {
       content: '3 .col-sm-4';
   }
-  .fa.fa-heart-o {
+  .fa.fa-heart-o, .fa.fa-heart {
     font-size: 1.5em;
   }
 }
@@ -126,7 +127,7 @@ nav.navbar .container-fluid {
   #columns[data-columns]::before {
       content: '4 .col-md-3';
   }
-  .fa.fa-heart-o {
+  .fa.fa-heart-o, .fa.fa-heart {
     font-size: 2em;
   }
 }
@@ -187,7 +188,7 @@ i.fa {
 }
 
 img {
-  max-height: 550px;
+  max-height: 500px;
   max-width: 550px;
 }
 
@@ -212,7 +213,7 @@ p i.down {
 }
 
 #lightbox-background .panel {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .panel.panel-primary.photo.single {
