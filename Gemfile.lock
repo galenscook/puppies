@@ -15,13 +15,20 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (6.1.2)
+      execjs
+      json
     backports (3.6.0)
     bcrypt (3.1.10)
+    bootstrap-sass (3.3.5.1)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.3.0)
     builder (3.2.2)
     commonjs (0.2.7)
     daemons (1.1.9)
     diff-lcs (1.2.5)
     eventmachine (1.0.3)
+    execjs (2.6.0)
     faker (1.3.0)
       i18n (~> 0.5)
     font-awesome-less (4.2.0)
@@ -47,6 +54,7 @@ GEM
     rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.6)
+    sass (3.4.19)
     shotgun (0.9)
       rack (>= 1.0)
     sinatra (1.4.5)
@@ -76,6 +84,7 @@ DEPENDENCIES
   activerecord (~> 4.1)
   activesupport (~> 4.1)
   bcrypt
+  bootstrap-sass (~> 3.3.5.1)
   faker
   font-awesome-less
   pg

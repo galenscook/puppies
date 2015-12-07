@@ -119,30 +119,47 @@ function unheart() {
 }
 
 // Lightbox
+function lockScroll(){
+  var scrollPosition = [
+    self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
+    self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop
+  ];
+  var html = jQuery('html'); // it would make more sense to apply this to body, but IE7 won't have that
+  html.data('scroll-position', scrollPosition);
+  html.data('previous-overflow', html.css('overflow'));
+  html.css('overflow', 'hidden');
+  $('#lightbox-background').css('top', scrollPosition[1])
+  window.scrollTo(scrollPosition[0], scrollPosition[1]);
+}
+
+function unlockScroll(){
+  var html = jQuery('html');
+  var scrollPosition = html.data('scroll-position');
+  html.css('overflow', html.data('previous-overflow'));
+  window.scrollTo(scrollPosition[0], scrollPosition[1])
+}
+
 function lightBox() {
   $('body').on("click", ".panel-body a", function(event){
     event.preventDefault()
 
-  $('html, body').css({
-       'overflow': 'hidden',
-       'height': '100%'
-   });
+    lockScroll();
 
-  $('#lightbox-background').fadeIn("slow")
+    $('#lightbox-background').fadeIn("slow")
 
-  var url = $(this).attr('href')
+    var url = $(this).attr('href')
 
-  $.ajax({
-    method: 'get',
-    url: url,
-    dataType: 'html',
-  })
+    $.ajax({
+      method: 'get',
+      url: url,
+      dataType: 'html',
+    })
 
-  .done(function(response){
-    var lightbox = "<div class='lightbox-panel'>"+response+"</div>"
-    $('#lightbox-background').append(lightbox).fadeIn(400)
-  })
-  })
+    .done(function(response){
+      var lightbox = "<div class='lightbox-panel'>"+response+"</div>"
+      $('#lightbox-background').append(lightbox).fadeIn(400)
+    })
+    })
 }
 
 

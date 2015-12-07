@@ -1,7 +1,7 @@
-
 get '/session' do
   session.inspect
 end
+
 #send to registration form
 get '/users/new' do
   if request.xhr?
@@ -103,7 +103,7 @@ delete '/users/:id' do
       session.delete(:user_id)
     end
     redirect '/'
-  else current_user.id.to_s != params[:id]
+  else 
     erb :access_denied
   end
 end
