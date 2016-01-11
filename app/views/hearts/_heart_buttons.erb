@@ -9,9 +9,9 @@
   <form method='post' action='/hearts' id='heart' <%if (photo.hearts.find_by(user_id: current_user.id))%>class="hidden"<%end%>>
     <input type='hidden' name='heart[user_id]' value='<%=current_user.id%>'>
     <input type='hidden' name='heart[photo_id]' value='<%=photo.id%>'>
-    <div class='form-group'>
+<!--     <div class='form-group'>
       <input type='text' class='form-control' name='heart[comment]' placeholder='What makes this so heartable?'>
-    </div>
+    </div> -->
     <label class='heart-count photo<%=photo.id%>'><%= photo.heart_count %></label>
     <button type='submit' class='icon'><i class="fa fa-heart-o"></i></button>
   </form>

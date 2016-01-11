@@ -74,7 +74,6 @@ function heart() {
 
     .done(function(response) {
       response = JSON.parse(response);
-      $('.comments').prepend(response.html);  
       $('.photo'+response.photo).text(response.heart_count)
     })
 
@@ -105,9 +104,6 @@ function unheart() {
 
     .done(function(response){
       response = JSON.parse(response);
-      if ($('.comments').length != 0) {
-        $('#'+response.heart_id).remove();
-      }
       $('.photo'+response.photo).text(response.heart_count)
     })
 
