@@ -4,6 +4,7 @@ $(document).ready(function() {
   heart();
   unheart();
   comment();
+  deleteComment();
   lightBox();
   hideLightBox();
   loginPrompt();
@@ -141,8 +142,29 @@ function comment() {
     .fail(function(response){
       console.log("FAIL")
     });
+  })
+};
 
+function deleteComment() {
+  $('body').on("submit", "#delete_comment", function(event){
+    event.preventDefault();
+    
+    var commentID = $(this).closest('li').attr('id');
 
+    $(this).closest('li').remove();
+    $.ajax({
+      method:"delete",
+      url: "/comments/"+commentID,
+      datatype: "json"
+    })
+
+    .done(function(response) {
+      console.log("HERE")
+    })
+
+    .fail(function(response){
+      console.log("FAIL")
+    });
   })
 };
 

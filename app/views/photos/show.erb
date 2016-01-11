@@ -16,6 +16,14 @@
       <li class='list-group-item' id="<%= comment.id%>">
         <div><p><i class='fa fa-quote-left up'></i>&#9;<%=comment.comment%>   <i class='fa fa-quote-right down'></i>
               -- <a href='/users/<%=comment.user_id%>'><%=comment.user.username%></a></p>
+            <%if comment.user.id == current_user.id%>
+            <p>
+              <form method='post' action='/comments/<%=comment.id%>' id='delete_comment'>
+                <input type='hidden' name='_method' value='delete'>
+                <input type='submit' value='delete comment'>
+              </form>
+            </p>
+            <%end%>
         </div>
       <% if is_authenticated? %>
         <% if is_admin? %>

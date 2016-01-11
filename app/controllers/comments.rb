@@ -15,15 +15,14 @@ put '/hearts' do
 
 end
 
-delete '/comments' do
-  @comment = Comment.find_by(user_id: params[:user_id], photo_id: params[:photo_id])
+delete '/comments/:comment_id' do
+  @comment = Comment.find(params[:comment_id])
   @comment.destroy
-  @photo = Photo.find(params[:photo_id])
-  heart_info = {heart_count: @photo.heart_count.to_s, heart: :'/hearts/_heart', heart_id: @heart.id.to_s, photo: @photo.id}
+  @photo = Photo.find(@comment.photo_id)
   if request.xhr?
-    heart_info.to_json
+    {comments: @photo.comments.all}.to_json
   else
-    redirect "/photos/#{params[:photo_id]}"
+    redirect "/photos/#{@photo.id}"
   end
 end
 
@@ -31,8 +30,8 @@ get '/comments/:id/delete' do
   if !is_admin?
     erb :access_denied
   else
-    heart = Heart.find(params[:id])
-    heart.destroy
-    redirect "/photos/#{heart.photo.id}"
+    comment = Comment.find(params[:id])
+    comment.destroy
+    redirect "/photos/#{comment.photo.id}"
   end
 end

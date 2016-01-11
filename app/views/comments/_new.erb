@@ -1,6 +1,6 @@
-<form method='post' action='/comments/<%=photo.id%>' id='comment' <%if (photo.comments.find_by(user_id: current_user.id))%>class="hidden"<%end%>>
+<form method='post' action='/comments/<%=photo.id%>' id='comment'>
   <div class='form-group'>
     <input type='text' class='form-control' name='comment' placeholder='What makes this so heartable?'>
   </div>
-  <input type='submit' value='Add Comment'>
+  <input type='submit' value='add comment'>
 </form>
