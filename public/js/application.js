@@ -134,13 +134,11 @@ function comment() {
     })
 
     .done(function(response) {
-      console.log("HERE")
       response = JSON.parse(response);
       $('.comments').prepend(response.html); 
     })
 
     .fail(function(response){
-      console.log("FAIL")
     });
   })
 };
@@ -149,9 +147,10 @@ function deleteComment() {
   $('body').on("submit", "#delete_comment", function(event){
     event.preventDefault();
     
+    var comment = $(this).closest('li')
     var commentID = $(this).closest('li').attr('id');
 
-    $(this).closest('li').remove();
+    comment.remove();
     $.ajax({
       method:"delete",
       url: "/comments/"+commentID,
@@ -159,11 +158,11 @@ function deleteComment() {
     })
 
     .done(function(response) {
-      console.log("HERE")
+      
     })
 
     .fail(function(response){
-      console.log("FAIL")
+      $('.comments').prepend(comment)
     });
   })
 };
