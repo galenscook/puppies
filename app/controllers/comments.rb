@@ -1,9 +1,10 @@
-post '/comments' do
-  @heart = Heart.create(params[:heart])
-  @errors = @heart.errors.full_messages
-  @photo = Photo.find(@heart.photo_id)
+post '/comments/:photo_id' do
+  p "IN POST"
+  @photo = Photo.find(params[:photo_id])
+  @photo.comments << Comment.create(user_id: current_user.id, comment: params[:comment])
+  @comment = @photo.comments.last
   if request.xhr? 
-    {html: (erb :'/hearts/_comment', layout: false, locals: {heart: @heart}), photo: @photo.id, heart_count: @photo.heart_count.to_s}.to_json
+    {html: (erb :'/comments/_show', layout: false, locals: {comment: @comment}), photo: @photo.id}.to_json
   else
     redirect "/photos/#{params[:heart][:photo_id]}"
   end

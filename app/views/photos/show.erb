@@ -9,11 +9,12 @@
   <div class='panel-body'><img src='<%= @photo.url%>' class='img-responsive' /></div>
   <div class='panel-footer'>
   <%= erb :'/hearts/_heart_buttons', locals: {photo: @photo} %>
+  <%= erb :'/comments/_new', locals: {photo: @photo} %>
   </div>
   <ul class='list-group comments'>
     <% @photo.comments.each do |comment| %>
       <li class='list-group-item' id="<%= comment.id%>">
-        <div><p><i class='fa fa-quote-left up'></i>&#9;<%=comment%>   <i class='fa fa-quote-right down'></i>
+        <div><p><i class='fa fa-quote-left up'></i>&#9;<%=comment.comment%>   <i class='fa fa-quote-right down'></i>
               -- <a href='/users/<%=comment.user_id%>'><%=comment.user.username%></a></p>
         </div>
       <% if is_authenticated? %>

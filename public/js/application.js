@@ -3,6 +3,7 @@ scrollable = true
 $(document).ready(function() {
   heart();
   unheart();
+  comment();
   lightBox();
   hideLightBox();
   loginPrompt();
@@ -64,7 +65,6 @@ function heart() {
     $('#'+photoID+' #unheart').removeClass('hidden');
     $('#'+photoID+' #heart').addClass('hidden');
 
-    $('input[type=text]').val('');
     $.ajax({
       method:"post",
       url: "/hearts",
@@ -113,6 +113,38 @@ function unheart() {
     })
   });
 }
+
+function comment() {
+  $('body').on("submit", "#comment", function(event){
+    event.preventDefault();
+    
+    var comment = $(this).serialize()
+    var photoID = $(this).closest('.photo').attr('id')
+    photoID = photoID.substr(5)
+
+    console.log(comment)
+    console.log(photoID)
+    $('input[type=text]').val('');
+    $.ajax({
+      method:"post",
+      url: "/comments/"+photoID,
+      data: comment,
+      datatype: "json"
+    })
+
+    .done(function(response) {
+      console.log("HERE")
+      response = JSON.parse(response);
+      $('.comments').prepend(response.html); 
+    })
+
+    .fail(function(response){
+      console.log("FAIL")
+    });
+
+
+  })
+};
 
 // Lightbox
 function lockScroll(){
