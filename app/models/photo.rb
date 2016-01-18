@@ -1,5 +1,7 @@
 class Photo < ActiveRecord::Base
   has_many :hearts
+  has_many :comments
+  has_many :users, through: :comments
   has_many :users, through: :hearts
 
   validates :url, presence: true, uniqueness: true

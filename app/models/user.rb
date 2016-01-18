@@ -2,6 +2,8 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
   has_many :hearts
+  has_many :comments
+  has_many :photos, through: :comments
   has_many :photos, through: :hearts
 
   validates :username, presence: true,

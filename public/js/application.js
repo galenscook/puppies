@@ -3,13 +3,15 @@ scrollable = true
 $(document).ready(function() {
   heart();
   unheart();
+  comment();
+  deleteComment();
   lightBox();
   hideLightBox();
   loginPrompt();
   showForm();
   $(document).on("scrollend", function() {
     infiniteScroll.requestPuppies(scrollable);   
-  })
+  });
 
   
 
@@ -64,7 +66,6 @@ function heart() {
     $('#'+photoID+' #unheart').removeClass('hidden');
     $('#'+photoID+' #heart').addClass('hidden');
 
-    $('input[type=text]').val('');
     $.ajax({
       method:"post",
       url: "/hearts",
@@ -74,7 +75,6 @@ function heart() {
 
     .done(function(response) {
       response = JSON.parse(response);
-      $('.comments').prepend(response.html);  
       $('.photo'+response.photo).text(response.heart_count)
     })
 
@@ -105,9 +105,6 @@ function unheart() {
 
     .done(function(response){
       response = JSON.parse(response);
-      if ($('.comments').length != 0) {
-        $('#'+response.heart_id).remove();
-      }
       $('.photo'+response.photo).text(response.heart_count)
     })
 
@@ -117,6 +114,59 @@ function unheart() {
     })
   });
 }
+
+function comment() {
+  $('body').on("submit", "#comment", function(event){
+    event.preventDefault();
+    
+    var comment = $(this).serialize()
+    var photoID = $(this).closest('.photo').attr('id')
+    photoID = photoID.substr(5)
+
+    console.log(comment)
+    console.log(photoID)
+    $('input[type=text]').val('');
+    $.ajax({
+      method:"post",
+      url: "/comments/"+photoID,
+      data: comment,
+      datatype: "json"
+    })
+
+    .done(function(response) {
+      response = JSON.parse(response);
+      $('.comments').prepend(response.html); 
+    })
+
+    .fail(function(response){
+      console.log(this)
+    });
+  })
+};
+
+function deleteComment() {
+  $('body').on("submit", "#delete_comment", function(event){
+    event.preventDefault();
+    
+    var comment = $(this).closest('li')
+    var commentID = $(this).closest('li').attr('id');
+
+    comment.remove();
+    $.ajax({
+      method:"delete",
+      url: "/comments/"+commentID,
+      datatype: "json"
+    })
+
+    .done(function(response) {
+      
+    })
+
+    .fail(function(response){
+      $('.comments').prepend(comment)
+    });
+  })
+};
 
 // Lightbox
 function lockScroll(){
@@ -219,14 +269,27 @@ var infiniteScroll = {
 }
 
 function loginPrompt() {
-  $('body').on('click', '.login', function(){
+  $('body').on('mouseup', '.login', function(){
+
     // console.log($(this).closest('div.panel-footer'))
-    // if($(this).closest('.panel-footer > .login-prompt').length === 0){
-      $(this).parent().children('.login-prompt').fadeIn().delay(2000).fadeOut('slow')
+
+      $(this).closest('.panel-footer').children().children('.login-prompt').fadeIn().delay(2000).fadeOut('slow')
+
+      // $(this).parent().children('.login-prompt').fadeIn().delay(2000).fadeOut('slow')
       // $(this).closest('.panel-footer').prepend("<div class='login-prompt'>please <a href='/login'>log in</a> or <a href='/users/new'>sign up</a> to heart.</div>").remove().delay(10000000000000)
       // $('.login-prompt').remove().delay(10000000000000)
     // }
-  })
+  });
+
+  $('body').on('')
+  // $('lightbox-background').on('click', '.login', function(){
+  //   console.log($(this))
+  // });
+
+  // $('body').on('click', '.login-lightbox', function(){
+  //   console.log($(this))
+  // })
+
 }
 
 // JSON ATTEMPTS
