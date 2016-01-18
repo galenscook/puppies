@@ -2,7 +2,7 @@
   <li class='list-group-item' id="<%= comment.id%>">
     <i class='fa fa-quote-left'></i> <%=comment.comment%> <i class='fa fa-quote-right'></i>
     --<a href='/users/<%=comment.user_id%>'><%=comment.user.username%></a>
-    <%if comment.user.id == current_user.id%>
+    <%if is_authenticated? && (comment.user.id == current_user.id)%>
     <p>
       <form method='post' action='/comments/<%=comment.id%>' id='delete_comment'>
         <input type='hidden' name='_method' value='delete'>

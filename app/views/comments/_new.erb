@@ -1,6 +1,17 @@
-<form method='post' action='/comments/<%=photo.id%>' id='comment'>
-  <div class='form-group'>
-    <input type='text' class='form-control' name='comment' placeholder='What makes this so heartable?'>
-  </div>
-  <input type='submit' value='add comment'>
-</form>
+<div class='embedded_button_field'>
+  <%if !is_authenticated? %>
+    <div class='form-group'>
+      <input type='text' class='form-control' name='comment' placeholder='What makes this so heartable?'>
+    </div>
+    <button value='add comment' class='login btn btn-default embedded_button' >add comment</button>
+  <%else%>
+
+  <form method='post' action='/comments/<%=photo.id%>' id='comment'>
+    <div class='form-group'>
+      <input type='text' class='form-control' name='comment' placeholder='What makes this so heartable?'>
+    </div>
+    <input type='submit' value='add comment' class='login btn btn-default embedded_button'>
+  </form>
+
+  <%end%>
+</div>

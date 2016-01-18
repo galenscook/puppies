@@ -200,6 +200,22 @@ p i.down {
   margin-left: 0.5em;
   vertical-align: baseline;
 }
+
+#delete_comment {
+  display: inline-block;
+}
+
+.embedded_button_field {
+  position: relative;
+}
+
+.embedded_button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+}
+
 /* Lightbox */
 #lightbox-background {
   position: absolute;

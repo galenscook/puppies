@@ -11,7 +11,7 @@ $(document).ready(function() {
   showForm();
   $(document).on("scrollend", function() {
     infiniteScroll.requestPuppies(scrollable);   
-  })
+  });
 
   
 
@@ -139,6 +139,7 @@ function comment() {
     })
 
     .fail(function(response){
+      console.log(this)
     });
   })
 };
@@ -268,14 +269,27 @@ var infiniteScroll = {
 }
 
 function loginPrompt() {
-  $('body').on('click', '.login', function(){
+  $('body').on('mouseup', '.login', function(){
+
     // console.log($(this).closest('div.panel-footer'))
-    // if($(this).closest('.panel-footer > .login-prompt').length === 0){
-      $(this).parent().children('.login-prompt').fadeIn().delay(2000).fadeOut('slow')
+
+      $(this).closest('.panel-footer').children().children('.login-prompt').fadeIn().delay(2000).fadeOut('slow')
+
+      // $(this).parent().children('.login-prompt').fadeIn().delay(2000).fadeOut('slow')
       // $(this).closest('.panel-footer').prepend("<div class='login-prompt'>please <a href='/login'>log in</a> or <a href='/users/new'>sign up</a> to heart.</div>").remove().delay(10000000000000)
       // $('.login-prompt').remove().delay(10000000000000)
     // }
-  })
+  });
+
+  $('body').on('')
+  // $('lightbox-background').on('click', '.login', function(){
+  //   console.log($(this))
+  // });
+
+  // $('body').on('click', '.login-lightbox', function(){
+  //   console.log($(this))
+  // })
+
 }
 
 // JSON ATTEMPTS
